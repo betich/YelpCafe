@@ -1,0 +1,14 @@
+<%- include ("partials/header") %> 
+
+<h1">Cafes</h1>
+
+<a href="/">Go back</a>
+
+<% cafes.forEach(e => { %>
+    <div>
+        <h4><%= e.name %></h4>
+        <img src="<%= e.img %>">
+    </div>
+<% }) %>
+
+<%- include ("partials/footer") %> 
