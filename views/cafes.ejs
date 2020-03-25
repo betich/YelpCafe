@@ -1,14 +1,28 @@
-<%- include ("partials/header") %> 
+<%- include ("partials/header") %>
 
-<h1">Cafes</h1>
+<div class="container">
+    <header class="jumbotron">
+        <div class="container">
+            <h1 class="display-3">Welcome to YelpCafe!</h1>
+            <h6 class="text-muted">View our selection of Coffee Shops from around the World!</h6>
+            <p>
+                <a href="/cafes/create" class="btn btn-primary btn-lg">Create New Cafe</a>
+            </p>
+        </div>
+    </header>
 
-<a href="/">Go back</a>
-
-<% cafes.forEach(e => { %>
-    <div>
-        <h4><%= e.name %></h4>
-        <img src="<%= e.img %>">
+    <div class="row text-center" style="display:flex; flex-wrap:wrap;">
+        <% cafes.forEach(e => { %>
+            <div class="col-md-3 col-sm-6">
+                <div>
+                    <img class="img-thumbnail" src="<%= e.img %>">
+                </div>
+                <div class="caption">
+                    <h6><%= e.name %></h6>
+                </div>
+            </div>
+        <% }) %>
     </div>
-<% }) %>
+</div>
 
-<%- include ("partials/footer") %> 
+<%- include ("partials/footer") %>
