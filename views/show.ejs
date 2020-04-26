@@ -5,4 +5,10 @@
 <img src="<%= cafe.img %>">
 <p><%= cafe.description %></p>
 
+<% cafe.comments.forEach(comment => { %>
+    <p>
+        <strong><%= comment.author %>:</strong>&emsp; <%= comment.text %>
+    </p>
+<% }) %>
+
 <%- include("partials/footer") %>
