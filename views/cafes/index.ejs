@@ -1,4 +1,4 @@
-<%- include ("partials/header") %>
+<%- include ("../partials/header") %>
 
 <div class="container">
     <header class="jumbotron">
@@ -15,17 +15,17 @@
         <% cafes.forEach(e => { %>
             <div class="col-md-3 col-sm-6">
                 <div>
-                    <img class="img-thumbnail" src="<%= e.img %>">
+                    <a href="/cafes/<%= e._id %>"><img class="img-thumbnail" src="<%= e.img %>"></a>
                 </div>
                 <div class="caption">
                     <h6><%= e.name %></h6>
                 </div>
                 <p>
-                    <a href="/cafes/<%= e._id %>" class="btn btn-primary">Show Info</a>
+                    <a href="/cafes/<%= e._id %>" class="btn btn-info">Show Info</a>
                 </p>
             </div>
         <% }) %>
     </div>
 </div>
 
-<%- include ("partials/footer") %>
+<%- include ("../partials/footer") %>

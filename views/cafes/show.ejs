@@ -1,9 +1,13 @@
-<%- include("partials/header") %>
+<%- include("../partials/header") %>
+
+<a href="/cafes">Go back</a>
 
 <h1><%= cafe.name %> </h1>
 
 <img src="<%= cafe.img %>">
 <p><%= cafe.description %></p>
+
+<a href="/cafes/<%= cafe._id %>/comments/new" class="btn btn-success">Create New Comment</a>
 
 <% cafe.comments.forEach(comment => { %>
     <p>
@@ -11,4 +15,4 @@
     </p>
 <% }) %>
 
-<%- include("partials/footer") %>
+<%- include("../partials/footer") %>
