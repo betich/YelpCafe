@@ -1,7 +1,7 @@
 <%- include("../partials/header") %>
 
 <div class="container">
-    <h1 style="text-align:center;margin-top:75px;">Create a new Comment to <%= cafe.name %> </h1>
+    <h1 class="form-title">Create a new Comment to <%= cafe.name %></h1>
     <div class="row">
         <div style="width:50%;margin:24px auto;">
             <form action="/cafes/<%= cafe._id %>/comments" method="POST">
@@ -12,7 +12,7 @@
                     <input type="text" class="form-control" name="comment[author]" placeholder="Name">
                 </div>
                 <div class="form-group">
-                    <input type="submit" class="btn btn-lg btn-block btn-primary">
+                    <input type="submit" class="btn brown btn-lg btn-block btn-primary" value="Create Comment">
                 </div>
             </form>
             <a href="/cafes/ <%= cafe._id %>">Go Back</a>

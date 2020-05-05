@@ -1,18 +1,63 @@
 <%- include("../partials/header") %>
 
-<a href="/cafes">Go back</a>
+<% var reviews=0; for (let p in cafe.comments) {reviews++;} %> 
 
-<h1><%= cafe.name %> </h1>
+<div id="img-container">
+    <!-- Container for image-->
+    <div class="image" style="background-image: url('<%= cafe.img %>');">
+    </div>
+</div>
 
-<img src="<%= cafe.img %>">
-<p><%= cafe.description %></p>
+<div class="container">
+    <div class="row">
+        <section class="col-md-12 content-block">
+            <h1><%= cafe.name %></h1>
+            <p> 
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                &nbsp;&bull;&nbsp;<%= reviews %> reviews&nbsp;&bull;&nbsp;$$
+            </p>
+            <hr>
+        </section>
+    </div>
+    <div class="row">
+        <section class="col-md-8">
+            <!-- Main Content -->
+            <section class="content-block">
+                <p class="text"><%= cafe.description %></p>
+            </section>
+            <!-- Comments -->
+            <section class="card card-body bg-light content-block">
+                <div>
+                    <h2 class="float-left">Reviews</h2>
+                    <a href="/cafes/<%= cafe._id %>/comments/new" class="btn btn-success brown float-right">Leave a Review</a>
+                </div>
+                <hr>
+                <% cafe.comments.forEach(comment => { %>
+                    <div class="row" id="comment">
+                        <div class="col-md-2">
+                            <strong><a><%= comment.author %></a></strong>
+                        </div>
+                        <div class="col-md-10">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                                <span class="float-right">10 days ago</span>
+                                <p><%= comment.text %></p>
+                        </div>
+                    </div>
+                <% }) %>
+           </section>
+        </section>
 
-<a href="/cafes/<%= cafe._id %>/comments/new" class="btn btn-success">Create New Comment</a>
+        <!-- Info -->
+        <section class="col-md-4 content-block">
+            <div class="list-group">
+                <li class="list-group-item"><i class="fas fa-address-card mr-4"></i>Info 1</li>
+                <li class="list-group-item"><i class="fas fa-address-card mr-4"></i>Info 2</li>
+                <li class="list-group-item"><i class="fas fa-address-card mr-4"></i>Info 3</li>
+            </div>
+        </section>
+    </div>
+</div>
 
-<% cafe.comments.forEach(comment => { %>
-    <p>
-        <strong><%= comment.author %>:</strong>&emsp; <%= comment.text %>
-    </p>
-<% }) %>
+<div style="height:300px;"></div>
 
 <%- include("../partials/footer") %>

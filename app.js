@@ -1,16 +1,42 @@
-var app         = require('express')(),
-    bodyParser  = require('body-parser'),
-    mongoose    = require('mongoose'),
-    Cafe  = require('./models/cafes'),
-    Comment = require('./models/comments'),
-    seedDB = require('./seeds');
+var express         = require('express'),
+    app             = express();
+    bodyParser      = require('body-parser'),
+    mongoose        = require('mongoose'),
+    passport        = require('passport'),
+    LocalStrategy   = require('passport-local'),
+    Cafe            = require('./models/cafes'),
+    Comment         = require('./models/comments'),
+    User            = require('./models/users'),
+    seedDB          = require('./seeds');
 
 mongoose.connect("mongodb://localhost:27017/yelpcafe", {useUnifiedTopology: true, useNewUrlParser: true,});
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/public'));
 
 seedDB();
 
+// Passport settings
+
+app.use(require('express-session')({
+    secret: 'sacret',
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.use((req, res, next) => {
+    // passing variable 'user' on every route
+    res.locals.user = req.user;
+    next();
+});
+
+// Routes
 app.get('/', (req,res) => {
     res.render("landingpage");
 })
@@ -22,7 +48,7 @@ app.get('/', (req,res) => {
         }
     });
 })
-.post('/cafes', (req,res) => {
+.post('/cafes', checkLogin, (req,res) => {
     var name = req.body.name;
     var image = req.body.image;
     var desc = req.body.description;
@@ -35,7 +61,7 @@ app.get('/', (req,res) => {
         } 
     });
 })
-.get('/cafes/new', (req,res) => {
+.get('/cafes/new', checkLogin, (req,res) => {
     res.render('cafes/create');
 })
 .get('/cafes/:id', (req,res) => {
@@ -46,7 +72,7 @@ app.get('/', (req,res) => {
         }
     });
 })
-.get('/cafes/:id/comments/new', (req, res) => {
+.get('/cafes/:id/comments/new', checkLogin, (req, res) => {
     Cafe.findById(req.params.id, (err, cafe) => {
         if (err) throw err;
         else {
@@ -54,7 +80,7 @@ app.get('/', (req,res) => {
         }
     })
 })
-.post('/cafes/:id/comments', (req, res) => {
+.post('/cafes/:id/comments', checkLogin, (req, res) => {
     Cafe.findById(req.params.id, (err, cafe) => {
         if (err) {
             console.log(err);
@@ -71,8 +97,45 @@ app.get('/', (req,res) => {
             })
         }
     })
+})
+
+// Auth
+.get('/register', (req, res) => {
+    res.render('register');
+})
+.post('/register', (req, res) => {
+    let newUser = new User({username: req.body.username});
+    User.register(newUser, req.body.password, (err, user) => {
+        if (err) {
+            console.log(err);
+            return res.redirect('/register');
+        }
+        User.authenticate("local")(req, res, () => {
+            res.redirect('/login');
+        });
+    });
+})
+.get('/login', (req, res) => {
+    res.render('login');
+})
+.post('/login', passport.authenticate('local', {
+    successRedirect: '/cafes',
+    failureRedirect: '/login'
+}))
+.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/cafes');
 });
 
-app.listen(8080, () => {
+function checkLogin(req, res, next) {
+    if(req.isAuthenticated()) {
+        next();
+    } else {
+        res.redirect('/login');
+    }
+}
+
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
     console.log("YelpCafe has started");
 });

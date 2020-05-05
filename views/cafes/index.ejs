@@ -1,31 +1,33 @@
 <%- include ("../partials/header") %>
 
 <div class="container">
-    <header class="jumbotron">
-        <div class="container">
+    <!-- Container for the header -->
+    <header class="jumbotron" id="img-bg">
+        <div class="container bg-text">
             <h1 class="display-4" style="font-size:calc(2em + 3.5vw);">Welcome to YelpCafe!</h1>
             <h6 class="text-muted" style="font-size:calc(0.75em + 0.75vw);margin: 15px 0;">View our selection of Coffee Shops from around the World!</h6>
             <p>
-                <a href="/cafes/new" class="btn btn-primary">Create New Cafe</a>
+                <a href="/cafes/new" class="btn brown btn-primary">Create New Cafe</a>
             </p>
         </div>
     </header>
 
-    <div class="row text-center" style="display:flex; flex-wrap:wrap;">
+    <!-- Container for all the cafes -->
+    <section class="row text-center" style="display:flex; flex-wrap:wrap;">
         <% cafes.forEach(e => { %>
-            <div class="col-md-3 col-sm-6">
-                <div>
-                    <a href="/cafes/<%= e._id %>"><img class="img-thumbnail" src="<%= e.img %>"></a>
-                </div>
-                <div class="caption">
-                    <h6><%= e.name %></h6>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="thumb-info">
+                    <a href="/cafes/<%= e._id %>"><img class="thumb img-thumbnail" src="<%= e.img %>"></a>
+                    <div class="caption">
+                        <h6><%= e.name %></h6>
+                    </div>
                 </div>
                 <p>
-                    <a href="/cafes/<%= e._id %>" class="btn btn-info">Show Info</a>
+                    <a href="/cafes/<%= e._id %>" class="btn blue btn-info">Show Info</a>
                 </p>
             </div>
         <% }) %>
-    </div>
+    </section>
 </div>
 
 <%- include ("../partials/footer") %>

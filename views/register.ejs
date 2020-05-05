@@ -1,0 +1,22 @@
+<%- include('partials/header')%>
+
+<div class="container">
+    <h1 class="form-title">Create a new User</h1>
+    <div class="row">
+        <div style="width:50%;margin:24px auto;">
+            <form action="/register" method="POST">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="username" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn brown btn-lg btn-block btn-primary" value="Create New User">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer') %>
