@@ -10,8 +10,10 @@
 
 <div class="container">
     <div class="row">
+        <!-- Heading -->
         <section class="col-md-12 content-block">
             <h1><%= cafe.name %></h1>
+            <p>Submitted by <a href="#"><%= cafe.author.username %></a></p>
             <p> 
                 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
                 &nbsp;&bull;&nbsp;<%= reviews %> reviews&nbsp;&bull;&nbsp;$$
@@ -29,13 +31,13 @@
             <section class="card card-body bg-light content-block">
                 <div>
                     <h2 class="float-left">Reviews</h2>
-                    <a href="/cafes/<%= cafe._id %>/comments/new" class="btn btn-success brown float-right">Leave a Review</a>
+                    <a href="/cafes/<%= cafe._id %>/comments/new" class="btn brown float-right">Leave a Review</a>
                 </div>
                 <hr>
                 <% cafe.comments.forEach(comment => { %>
                     <div class="row" id="comment">
                         <div class="col-md-2">
-                            <strong><a><%= comment.author %></a></strong>
+                            <strong><a><%= comment.author.username %></a></strong>
                         </div>
                         <div class="col-md-10">
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
@@ -50,9 +52,9 @@
         <!-- Info -->
         <section class="col-md-4 content-block">
             <div class="list-group">
-                <li class="list-group-item"><i class="fas fa-address-card mr-4"></i>Info 1</li>
-                <li class="list-group-item"><i class="fas fa-address-card mr-4"></i>Info 2</li>
-                <li class="list-group-item"><i class="fas fa-address-card mr-4"></i>Info 3</li>
+                <li class="list-group-item"><i class="fas fa-phone mr-4"></i>(123) 456-789</li>
+                <li class="list-group-item"><i class="fas fa-directions mr-4"></i><a href="#">Get Directions</a></li>
+                <li class="list-group-item"><i class="fas fa-comment-dots mr-4"></i><a href="#">Leave a Message</a></li>
             </div>
         </section>
     </div>

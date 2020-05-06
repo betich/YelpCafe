@@ -6,16 +6,13 @@
         <div style="width:50%;margin:24px auto;">
             <form action="/cafes/<%= cafe._id %>/comments" method="POST">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="comment[text]" placeholder="Text">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="comment[author]" placeholder="Name">
+                    <textarea class="form-control" name="comment[text]" autofocus></textarea>
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn brown btn-lg btn-block btn-primary" value="Create Comment">
                 </div>
             </form>
-            <a href="/cafes/ <%= cafe._id %>">Go Back</a>
+            <a href="/cafes/<%= cafe._id %>">Go Back</a>
         </div>
     </div>
 </div>

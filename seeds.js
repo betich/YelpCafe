@@ -8,11 +8,11 @@ async function seedDB() {
 
     for(const seed of seeds) {
         let cafe = await Cafe.create(seed);
-        let comment = await Comment.create({
-            "text": "Nice place, would return.",
-            "author": "Joe"
-        });
-        cafe.comments.push(comment);
+        //let comment = await Comment.create({
+        //    "text": "Nice place, would return.",
+        //    "author": "Joe"
+        //});
+        //cafe.comments.push(comment);
         cafe.save();
     }
 };
