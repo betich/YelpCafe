@@ -11,13 +11,30 @@
 <div class="container">
     <div class="row">
         <!-- Heading -->
-        <section class="col-md-12 content-block">
+        <section class="col-md-12">
             <h1><%= cafe.name %></h1>
-            <p>Submitted by <a href="#"><%= cafe.author.username %></a></p>
-            <p> 
+            <p>
+                Submitted by <a href="#"><%= cafe.author.username %></a>
+            </p>
+
+            <!-- Modify Buttons -->
+            <% if(user && cafe.author.id.equals(user._id)) { %> 
+                <div id="edit-delete-button">
+                    <a href="/cafes/<%= cafe._id %>/edit" class="btn btn-warning">
+                        <i class="fas fa-edit"></i> Edit
+                    </a>
+                    <div class="inline-btn">
+                        <form action="/cafes/<%= cafe._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-danger">
+                                <i class="fas fa-trash-alt"></i> Delete
+                            </button>
+                        </form>
+                    </div>
+                </div> 
+            <% } %>
+
                 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
                 &nbsp;&bull;&nbsp;<%= reviews %> reviews&nbsp;&bull;&nbsp;$$
-            </p>
             <hr>
         </section>
     </div>
@@ -41,8 +58,22 @@
                         </div>
                         <div class="col-md-10">
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
-                                <span class="float-right">10 days ago</span>
+                                <span class="float-right">10 days ago</span><br>
                                 <p><%= comment.text %></p>
+
+                                <% if(user && comment.author.id.equals(user._id)) { %>
+                                    <a class="btn btn-sm btn-warning"
+                                        href="/cafes/<%= cafe._id %>/comments/<%= comment._id %>/edit">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                    <div class="inline-btn">
+                                        <form action="/cafes/<%= cafe._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                                            <button class="btn btn-sm btn-danger">
+                                              <i class="fas fa-trash-alt"></i> Delete
+                                            </button>
+                                          </form>
+                                    </div>
+                                <% } %>
                         </div>
                     </div>
                 <% }) %>
@@ -51,11 +82,11 @@
 
         <!-- Info -->
         <section class="col-md-4 content-block">
-            <div class="list-group">
+            <div class="list-group"><ul>
                 <li class="list-group-item"><i class="fas fa-phone mr-4"></i>(123) 456-789</li>
                 <li class="list-group-item"><i class="fas fa-directions mr-4"></i><a href="#">Get Directions</a></li>
                 <li class="list-group-item"><i class="fas fa-comment-dots mr-4"></i><a href="#">Leave a Message</a></li>
-            </div>
+            </ul></div>
         </section>
     </div>
 </div>

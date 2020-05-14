@@ -1,0 +1,26 @@
+<%- include('../partials/header')%>
+
+<div class="container">
+    <h1 class="form-title">Edit <%= cafe.name %></h1>
+    <div class="row">
+        <div style="width:50%;margin:24px auto;">
+            <form action="/cafes/<%= cafe._id %>?_method=PUT" method="POST">
+                <div class="form-group">
+                    <input type="text" value="<%= cafe.name %>" class="form-control" name="cafe[name]" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <input type="text" value="<%= cafe.img %>" class="form-control" name="cafe[image]" placeholder="Image URL">
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" name="cafe[description]" placeholder="Description (Optional)"><%= cafe.description %></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn brown btn-lg btn-block btn-primary" value="Update Cafe">
+                </div>
+            </form>
+            <a href="/cafes/<%= cafe._id %>">Go Back</a>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>

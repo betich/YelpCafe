@@ -1,9 +1,10 @@
 var express         = require('express'),
-    app             = express();
+    app             = express(),
     bodyParser      = require('body-parser'),
     mongoose        = require('mongoose'),
     passport        = require('passport'),
     LocalStrategy   = require('passport-local'),
+    methodOverride  = require('method-override'),
     Cafe            = require('./models/cafes'),
     Comment         = require('./models/comments'),
     User            = require('./models/users'),
@@ -19,8 +20,9 @@ mongoose.connect("mongodb://localhost:27017/yelpcafe", {useUnifiedTopology: true
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
+app.use(methodOverride("_method"));
 
-seedDB();
+seedDB(); // Seed
 
 // Passport settings
 
@@ -38,6 +40,7 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
     // passing variable 'user' on every route
+    // EX: let id = user._id
     res.locals.user = req.user;
     next();
 });
@@ -46,6 +49,8 @@ app.use((req, res, next) => {
 app.use('/', Routes.index)
 .use('/cafes', Routes.cafes)
 .use('/cafes/:id/comments', Routes.comments);
+
+app.disable('x-powered-by');
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {

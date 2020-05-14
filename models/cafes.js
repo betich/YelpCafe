@@ -19,4 +19,13 @@ var cafeSchema = new mongoose.Schema({
     ]
 });
 
+const Comment = require('./comments');
+cafeSchema.pre('remove', async function() {
+    await Comment.remove({
+        _id: {
+            $in: this.comments
+        }
+    });
+});
+
 module.exports = mongoose.model("CoffeeShop", cafeSchema);
