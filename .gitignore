@@ -1,4 +1,11 @@
 data/
 node_modules/
+<<<<<<< HEAD
 snap/
 .vscode/
+||||||| 7092561
+snap/
+=======
+snap/
+.vscode/
+>>>>>>> f13fae0d4e07ccadd946f00d6052855986fb2a80
