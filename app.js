@@ -1,36 +1,41 @@
 var express         = require('express'),
-    app             = express(),
-    bodyParser      = require('body-parser'),
-    mongoose        = require('mongoose'),
-    passport        = require('passport'),
-    LocalStrategy   = require('passport-local'),
-    methodOverride  = require('method-override'),
-    Cafe            = require('./models/cafes'),
-    Comment         = require('./models/comments'),
-    User            = require('./models/users'),
-    seedDB          = require('./seeds');
+	app             = express(),
+	bodyParser      = require('body-parser'),
+	mongoose        = require('mongoose'),
+	passport        = require('passport'),
+	LocalStrategy   = require('passport-local'),
+	methodOverride  = require('method-override'),
+	flash           = require('connect-flash'),
+	Cafe            = require('./models/cafes'),
+	Comment         = require('./models/comments'),
+	User            = require('./models/users'),
+	seedDB          = require('./seeds');
 
 var Routes = {
-    cafes: require('./routes/cafes'),
-    comments: require('./routes/comments'),
-    index: require('./routes/index')
+	cafes: require('./routes/cafes'),
+	comments: require('./routes/comments'),
+	index: require('./routes/index')
 };
 
-mongoose.connect("mongodb://localhost:27017/yelpcafe", {useUnifiedTopology: true, useNewUrlParser: true,});
-app.use(bodyParser.urlencoded({extended: true}));
+mongoose.connect('mongodb://localhost:27017/yelpcafe', { useUnifiedTopology: true, useNewUrlParser: true });
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
-app.use(express.static(__dirname + '/public'));
-app.use(methodOverride("_method"));
+app.use(express.static(__dirname + '/public')); // Lets /public be used for calling stylesheets
+app.use(methodOverride('_method')); // Lets you use PUT, DELETE verbs by overriding POST
+
+app.use(flash());
 
 seedDB(); // Seed
 
 // Passport settings
 
-app.use(require('express-session')({
-    secret: 'sacret',
-    resave: false,
-    saveUninitialized: false
-}));
+app.use(
+	require('express-session')({
+		secret: 'sacret',
+		resave: false,
+		saveUninitialized: false
+	})
+);
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
@@ -39,20 +44,19 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
-    // passing variable 'user' on every route
-    // EX: let id = user._id
-    res.locals.user = req.user;
-    next();
+	// passing variable 'user' on every route
+	res.locals.user = req.user;
+	res.locals.msg_error = req.flash('error');
+	res.locals.msg_success = req.flash('success');
+	next();
 });
 
 // Routes
-app.use('/', Routes.index)
-.use('/cafes', Routes.cafes)
-.use('/cafes/:id/comments', Routes.comments);
+app.use('/', Routes.index).use('/cafes', Routes.cafes).use('/cafes/:id/comments', Routes.comments);
 
 app.disable('x-powered-by');
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
-    console.log("YelpCafe has started");
+	console.log('YelpCafe has started');
 });

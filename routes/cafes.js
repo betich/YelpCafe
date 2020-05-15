@@ -3,7 +3,8 @@ var express = require('express'),
     Cafe    = require('../models/cafes'),
     auth    = require('../middleware');
 
-router.get('/', (req,res) => {
+router
+.get('/', (req,res) => {
     Cafe.find({}, (err, allCafes) => {
         if (err) console.log(err);
         else {
@@ -25,7 +26,7 @@ router.get('/', (req,res) => {
     Cafe.create(newCafe, (err, cafe) => {
         if (err) console.log(err);
         else {
-            console.log("NEW CAFE: Cafe " + cafe.name + " has been created by \'" + cafe.author.username + "\'.");
+            req.flash("Cafe " + cafe.name + " has been created by \'" + cafe.author.username + "\'");
             res.redirect('/cafes');
         } 
     });
