@@ -1,6 +1,7 @@
 var express = require('express'),
     router  = express.Router(),
-    Cafe    = require('../models/cafes');
+    Cafe    = require('../models/cafes'),
+    auth    = require('../middleware');
 
 router.get('/', (req,res) => {
     Cafe.find({}, (err, allCafes) => {
@@ -12,7 +13,7 @@ router.get('/', (req,res) => {
 })
 
 // Create New Cafe
-.post('/', checkLogin, (req,res) => {
+.post('/', auth.checkLogin, (req,res) => {
     let name = req.body.name;
     let image = req.body.image;
     let desc = req.body.description;
@@ -29,7 +30,7 @@ router.get('/', (req,res) => {
         } 
     });
 })
-.get('/new', checkLogin, (req,res) => {
+.get('/new', auth.checkLogin, (req,res) => {
     res.render('cafes/create');
 })
 
@@ -46,14 +47,14 @@ router.get('/', (req,res) => {
 })
 
 // Edit
-.get('/:id/edit', checkOwnership, (req, res) => {
+.get('/:id/edit', auth.checkOwnership, (req, res) => {
     Cafe.findById(req.params.id, (err, foundCafe) => {
         res.render("cafes/edit", {cafe: foundCafe});
     });
 })
 
 // Update
-.put('/:id', checkOwnership, (req, res) => {
+.put('/:id', auth.checkOwnership, (req, res) => {
     Cafe.findByIdAndUpdate(req.params.id, req.body.cafe, {useFindAndModify: false}, (err, updatedCafe) => {
         if(err) res.redirect('back');
         else res.redirect('/cafes/' + req.params.id);
@@ -61,7 +62,7 @@ router.get('/', (req,res) => {
 })
 
 // Remove
-.delete('/:id', checkOwnership, (req, res) => {
+.delete('/:id', auth.checkOwnership, (req, res) => {
     Cafe.findByIdAndRemove(req.params.id, {useFindAndModify: false}, async(err) => {
         if(err) {
             let removedCafe = await Cafe.findById(req.params.id);
@@ -71,27 +72,5 @@ router.get('/', (req,res) => {
         else res.redirect('/cafes');
     });
 });
-
-function checkLogin(req, res, next) {
-    if(req.isAuthenticated()) {
-        next();
-    } else {
-        res.redirect('/login');
-    }
-}
-function checkOwnership(req, res, next) {
-    if(req.isAuthenticated()) {
-        // Is the user authorized?
-        Cafe.findById(req.params.id, (err, foundCafe) => {
-            if(foundCafe.author.id.equals(req.user._id)) {
-                next();
-            } else {
-                res.redirect('back');
-            }
-        });
-    } else {
-        res.redirect('back');
-    }
-}
 
 module.exports = router;
