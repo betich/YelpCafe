@@ -4,8 +4,9 @@ var express = require('express'),
     Comment = require('../models/comments'),
     auth    = require('../middleware');
 
-// Create
-router.get('/new', auth.checkLogin, (req, res) => {
+// Create 
+router
+.get('/new', auth.checkLogin, (req, res) => {
     Cafe.findById(req.params.id, (err, cafe) => {
         if (err) console.log(err);
         else {
@@ -17,8 +18,8 @@ router.get('/new', auth.checkLogin, (req, res) => {
 .post('/', auth.checkLogin, (req, res) => {
     Cafe.findById(req.params.id, (err, cafe) => {
         if (err) {
+            req.flash('error', "Something Went Wrong");
             console.log(err);
-            res.redirect('/cafes');
         }
         else {
             Comment.create(req.body.comment, (err, comment) => {
@@ -30,6 +31,7 @@ router.get('/new', auth.checkLogin, (req, res) => {
                     comment.save();
                     cafe.comments.push(comment);
                     cafe.save();
+                    req.flash('success', "Your comment has been added successfully")
                     res.redirect('/cafes/' + cafe._id);
                 }
             })
@@ -60,7 +62,10 @@ router.get('/new', auth.checkLogin, (req, res) => {
 .delete('/:comment_id', auth.checkCommentOwnership, (req, res) => {
     Comment.findByIdAndRemove(req.params.comment_id, {useFindAndModify: false}, (err) => {
         if(err) res.redirect('back');
-        else res.redirect('/cafes/' + req.params.id);
+        else {
+            req.flash('success', "Comment deleted");
+            res.redirect('/cafes/' + req.params.id);
+        }
     });
 });
 

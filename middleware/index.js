@@ -9,10 +9,12 @@ var middleware = {
                 if(foundCafe.author.id.equals(req.user._id)) {
                     next();
                 } else {
+                    req.flash('error', "You don't have permission to do that");
                     res.redirect('back');
                 }
             });
         } else {
+            req.flash('error', "You need to be logged in first");
             res.redirect('back');
         }
     },
@@ -20,16 +22,21 @@ var middleware = {
         if(req.isAuthenticated()) {
             // Is the user authorized?
             Comment.findById(req.params.comment_id, (err, foundComment) => {
-                if(err) res.redirect('back');
+                if(err) {
+                    req.flash('error', "Something Went Wrong");
+                    res.redirect('back');
+                }
                 else {
                     if(foundComment.author.id.equals(req.user._id)) {
                         next();
                     } else {
+                        req.flash('error', "You don't have permission to do that");
                         res.redirect('back');
                     }
                 }
             });
         } else {
+            req.flash('error', "You need to be logged in first");
             res.redirect('back');
         }
     },
@@ -37,6 +44,7 @@ var middleware = {
         if(req.isAuthenticated()) {
             next();
         } else {
+            req.flash('error', "You need to be logged in first");
             res.redirect('/login');
         }
     }

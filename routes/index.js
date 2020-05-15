@@ -3,7 +3,8 @@ var express = require('express'),
     User = require('../models/users'),
     router  = express.Router();
 
-router.get('/', (req,res) => {
+router
+.get('/', (req,res) => {
     res.render("landingpage");
 })
 
@@ -15,11 +16,12 @@ router.get('/', (req,res) => {
     let newUser = new User({username: req.body.username});
     User.register(newUser, req.body.password, (err, user) => {
         if (err) {
-            console.log(err);
+            req.flash('error', err.message);
             return res.redirect('/register');
         }
         User.authenticate("local")(req, res, () => {
-            res.redirect('/login');
+            req.flash('success', "Welcome, " + user.username);
+            res.redirect('/cafes');
         });
     });
 })
@@ -35,6 +37,7 @@ router.get('/', (req,res) => {
 
 .get('/logout', (req, res) => {
     req.logout();
+    req.flash('success', "Logged out");
     res.redirect('/cafes');
 });
 
