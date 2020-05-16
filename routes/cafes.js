@@ -6,7 +6,10 @@ var express = require('express'),
 router
 .get('/', (req,res) => {
     Cafe.find({}, (err, allCafes) => {
-        if (err) console.log(err);
+        if (err) {
+            req.flash('error', err.message);
+            res.redirect('back');
+        }
         else {
             res.render("cafes/index", {cafes: allCafes});
         }
@@ -24,7 +27,10 @@ router
     }
     let newCafe = {name: name, img: image, description: desc, author:author};
     Cafe.create(newCafe, (err, cafe) => {
-        if (err) console.log(err);
+        if (err) {
+            req.flash('error', err.message);
+            res.redirect('/cafes');
+        }
         else {
             req.flash("Cafe " + cafe.name + " has been created by \'" + cafe.author.username + "\'");
             res.redirect('/cafes');
@@ -38,8 +44,9 @@ router
 // Show
 .get('/:id', (req,res) => {
     Cafe.findById(req.params.id).populate("comments").exec((err, foundCafe) => {
-        if (err) {
-            console.log(err);
+        if (err || !foundCafe) {
+            req.flash('error', "Sorry, Your Cafe cannot be found!");
+            res.redirect('back');
         }
         else {
             res.render("cafes/show", {cafe: foundCafe});

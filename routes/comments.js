@@ -8,7 +8,10 @@ var express = require('express'),
 router
 .get('/new', auth.checkLogin, (req, res) => {
     Cafe.findById(req.params.id, (err, cafe) => {
-        if (err) console.log(err);
+        if (err) {
+            req.flash('error', err.message);
+            res.redirect('back');
+        }
         else {
             res.render("comments/create", {cafe: cafe});
         }
@@ -18,12 +21,15 @@ router
 .post('/', auth.checkLogin, (req, res) => {
     Cafe.findById(req.params.id, (err, cafe) => {
         if (err) {
-            req.flash('error', "Something Went Wrong");
-            console.log(err);
+            req.flash('error', err.message);
+            res.redirect('back');
         }
         else {
             Comment.create(req.body.comment, (err, comment) => {
-                if (err) console.log(err);
+                if (err) {
+                    req.flash('error', err.message);
+                    res.redirect('back');
+                }
                 else {
                     comment.author.id = req.user._id;
                     comment.author.username = req.user.username;
@@ -41,11 +47,21 @@ router
 
 // Edit
 .get('/:comment_id/edit', auth.checkCommentOwnership, (req, res) => {
-    Comment.findById(req.params.comment_id, (err, comment) => {
-        if(err) res.redirect('back');
+    Cafe.findById(req.params.id, (err, cafe) => {
+        if (err || cafe == undefined) {
+            req.flash('error', "Cafe not found");
+            res.redirect('back');
+        }
         else {
-            let cafe = Cafe.findById(req.params.id);
-            res.render('comments/edit', {cafe: cafe, comment: comment});
+            Comment.findById(req.params.comment_id, (err, comment) => {
+                if(err || !comment) {
+                    req.flash('error', "Comment not found");
+                    res.redirect('back');
+                } 
+                else {
+                    res.render('comments/edit', {cafe: cafe, comment: comment});
+                }
+            });
         }
     });
 })

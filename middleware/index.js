@@ -6,7 +6,11 @@ var middleware = {
         if(req.isAuthenticated()) {
             // Is the user authorized?
             Cafe.findById(req.params.id, (err, foundCafe) => {
-                if(foundCafe.author.id.equals(req.user._id)) {
+                if(err || !foundCafe) {
+                    req.flash('error', "Sorry, Your Cafe cannot be found!");
+                    res.redirect('back');
+                }
+                else if(foundCafe.author.id.equals(req.user._id)) {
                     next();
                 } else {
                     req.flash('error', "You don't have permission to do that");
@@ -15,7 +19,8 @@ var middleware = {
             });
         } else {
             req.flash('error', "You need to be logged in first");
-            res.redirect('back');
+            req.session.returnTo = req.originalUrl;
+            res.redirect('/login');
         }
     },
     checkCommentOwnership: (req, res, next) => {
@@ -27,7 +32,11 @@ var middleware = {
                     res.redirect('back');
                 }
                 else {
-                    if(foundComment.author.id.equals(req.user._id)) {
+                    if(err || !foundComment) {
+                        req.flash('error', "Sorry, Your Comment cannot be found!");
+                        res.redirect('back');
+                    }
+                    else if(foundComment.author.id.equals(req.user._id)) {
                         next();
                     } else {
                         req.flash('error', "You don't have permission to do that");
@@ -37,7 +46,8 @@ var middleware = {
             });
         } else {
             req.flash('error', "You need to be logged in first");
-            res.redirect('back');
+            req.session.returnTo = req.originalUrl;
+            res.redirect('/login');
         }
     },
     checkLogin: (req, res, next) => {
@@ -45,6 +55,7 @@ var middleware = {
             next();
         } else {
             req.flash('error', "You need to be logged in first");
+            req.session.returnTo = req.originalUrl;
             res.redirect('/login');
         }
     }

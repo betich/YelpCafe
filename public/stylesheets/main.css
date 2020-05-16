@@ -14,10 +14,10 @@ h1,
 }
 
 a {
-	color: rgb(6, 121, 63);
+	color: rgb(67, 150, 118);
 }
 a:hover {
-	color: rgb(55, 219, 137);
+	color: rgb(37, 119, 78);
 	text-decoration: none;
 }
 a i {
@@ -113,12 +113,11 @@ textarea {
 /* Image on Text */
 /* Other bg: https://images.unsplash.com/photo-1447933601403-0c6688de566e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=956&q=80 */
 #bg-container {
-	height: 70vh;
+	height: 75vh;
 	margin: 40px 0;
 }
 #img-bg {
-	background: rgb(34, 25, 18);
-	background: linear-gradient(90deg, rgba(34, 25, 18, 1) 21%, rgba(108, 81, 61, 1) 76%);
+	background-image: url("/img/cover.jpg");
 	background-size: cover;
 	background-attachment: fixed;
 	display: flex;
@@ -130,6 +129,17 @@ textarea {
 	opacity: 0.8;
 	align-items: center;
 	margin: 0;
+}
+#img-bg:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgb(34, 25, 18);
+	background: linear-gradient(90deg, rgb(17, 13, 9) 21%, rgb(80, 60, 46) 76%);
+	opacity: 0.85;
 }
 .bg-jumbo {
 	font-weight: bold;
@@ -164,7 +174,7 @@ textarea {
 	color: white;
 }
 .blue:hover {
-	background: rgb(49, 32, 88);
+	background: #281f77;
 	color: white;
 }
 .white {
@@ -172,8 +182,8 @@ textarea {
 	color: rgb(58, 34, 17);
 }
 .white:hover {
-	background: rgb(44, 62, 97);
-	color: whitesmoke; 
+	background: #ffa600;
+	color: rgb(37, 5, 5); 
 }
 
 /* Navbar */

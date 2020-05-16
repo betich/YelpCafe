@@ -24,6 +24,7 @@ app.use(express.static(__dirname + '/public')); // Lets /public be used for call
 app.use(methodOverride('_method')); // Lets you use PUT, DELETE verbs by overriding POST
 
 app.use(flash());
+app.use(require('helmet')());
 
 seedDB(); // Seed
 
@@ -31,7 +32,7 @@ seedDB(); // Seed
 
 app.use(
 	require('express-session')({
-		secret: 'sacret',
+		secret: 's4cr3t',
 		resave: false,
 		saveUninitialized: false
 	})
@@ -58,5 +59,5 @@ app.disable('x-powered-by');
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
-	console.log('YelpCafe has started');
+	console.info('\x1b[45m%s\x1b[0m', 'YelpCafe has started');
 });

@@ -30,10 +30,29 @@ router
     res.render('login');
 })
 
-.post('/login', passport.authenticate('local', {
-    successRedirect: '/cafes',
-    failureRedirect: '/login'
-}))
+.post('/login', (req, res, next) => {
+    passport.authenticate('local', (err, user) => {
+        if (err) {
+            req.flash('error', err.message);
+            res.redirect('/login');
+        } else if (!user) {
+            req.flash('error', "The username or password is incorrect");
+            res.redirect('/login');
+        } else {
+            req.login(user, (err) => {
+                if(err) {
+                    req.flash('error', err.message);
+                    res.redirect('/login');
+                }
+                else {
+                    req.flash('success', "Welcome, " + user.username);
+                    res.redirect(req.session.returnTo || '/cafes');
+                    delete req.session.returnTo;
+                }
+            });
+        }
+    })(req, res, next);
+})
 
 .get('/logout', (req, res) => {
     req.logout();
