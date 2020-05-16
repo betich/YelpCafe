@@ -5,7 +5,7 @@
     <meta name="description" content="The Place to find all your favorite cafes.">
     <meta name="keywords" content="Yelp, YelpCafe, Cafe, Yelp cafe">
     <meta name="author" content="bTch">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0">
     <title>YelpCafe</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css">
@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;600;700;800&display=swap" rel="stylesheet"> 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top justify-content-between">
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top justify-content-between">
         <div class="container-fluid" id="nav-container">
             <!-- Navbar brand-->
             <div class="navbar-header">
@@ -44,8 +44,8 @@
         </div>
     </nav>
     
-    <div class="container">
     <!-- Flash Messages -->
+    <header class="container">
     <% if(msg_error && msg_error.length > 0) { %>
         <div class="alert alert-danger" role="alert">
             <%= msg_error %>
@@ -55,4 +55,4 @@
             <%= msg_success %>
         </div>
     <% } %>
-    </div>
+    </header>

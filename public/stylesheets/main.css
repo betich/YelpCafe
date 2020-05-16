@@ -2,6 +2,12 @@
 	box-sizing: border-box;
 	font-family: 'Roboto', sans-serif;
 }
+body {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	overflow-x: hidden;
+}
 ::selection {
 	background-color: #4d3736;
 	color: whitesmoke;
@@ -11,6 +17,7 @@ h1,
 .navbar-brand {
 	font-family: 'mukta', sans-serif;
 	font-size: calc(2.5vw + 40px);
+	font-weight: bold;
 }
 
 a {
@@ -160,13 +167,14 @@ textarea {
 	color: rgb(228, 228, 228) !important;
 }
 
-/* Colors */
+/* BTN Colors */
+.btn { transition: .3s ease-in-out; }
 .brown {
-	background: #4d3d6c;
+	background: #6d4e4e;
 	color: white;
 }
 .brown:hover {
-	background: #4d2742;
+	background: #531717;
 	color: white;
 }
 .blue {
@@ -177,13 +185,16 @@ textarea {
 	background: #281f77;
 	color: white;
 }
-.white {
-	background: whitesmoke;
-	color: rgb(58, 34, 17);
+.yellow {
+	background: rgb(255, 241, 116);
+    color: rgb(39, 39, 39);
+    margin-top: 30px;
+    padding: 1em 1.2em;
+    border-radius: 50px;
 }
-.white:hover {
-	background: #ffa600;
-	color: rgb(37, 5, 5); 
+.yellow:hover {
+    background: rgb(255, 238, 6);
+	color: rgb(39, 39, 39);
 }
 
 /* Navbar */
@@ -192,14 +203,17 @@ nav .navbar-brand {
 	font-weight: bolder;
 }
 nav {
+	background-color: #f8f8f8;
 	height: 75px;
 	padding: 0 !important;
 	width: 100%;
+	top: 0; left: 0; right: 0; bottom: 0;
+	position: sticky;
 }
 #nav-container {
-	background-color: #f8f9fa;
 	width: 100vw;
 	padding: 5px 20px;
+	background: #f8f8f8;
 }
 nav .navbar-toggler[aria-expanded="true"] span:first-of-type {
 	transform: rotate(45deg) translate(6px, 6px);
@@ -223,7 +237,6 @@ nav .navbar-toggler[aria-expanded="false"] span {
 nav .navbar-toggler span {
 	display: block;
 	margin: 6px auto;
-	background: #fff;
 	transition: all .6s cubic-bezier(0.250, 0.100, 0.250, 1.000);
 	border: none;
 	outline: none !important;
@@ -250,4 +263,20 @@ nav .navbar-toggler[aria-expanded="true"] span:last-of-type {
 nav .navbar-toggler[aria-expanded="false"] span {
 	transform: none;
 	opacity: 1;
+}
+
+#footer {
+	background: #3f3f44;
+	color: whitesmoke;
+    width: 100vw;
+    padding: 30px 0;
+    margin: 0;
+    height: 5%;
+    text-align: center;
+    font-family: 'Mukta', sans-serif;
+    z-index: 1;
+}
+#footer > *::selection {
+	background: whitesmoke;
+	color: rgb(51, 51, 51);
 }

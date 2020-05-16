@@ -1,9 +1,9 @@
 <%- include("../partials/header") %>
 
-<div class="container">
+<div class="container-fluid">
     <h1 class="form-title">Edit Comment from <%= cafe.name %></h1>
     <div class="row">
-        <div style="width:50%;margin:24px auto;">
+        <div style="width:calc(30% + 20vh);margin:24px auto;">
             <form action="/cafes/<%= cafe._id %>/comments/<%= comment._id %>?_method=PUT" method="POST">
                 <div class="form-group">
                     <textarea class="form-control" name="comment[text]" autofocus><%= comment.text %></textarea>
