@@ -4,11 +4,9 @@
     <!-- Container for the header -->
     <header class="jumbotron" id="img-bg">
         <div class="container bg-jumbo">
-            <h1 class="display-4 bg-text" style="font-size:calc(2em + 3.5vw);">Welcome to YelpCafe!</h1>
-            <h6 class="text-muted bg-text" style="font-size:calc(0.75em + 0.75vw);margin: 15px 0;">View our selection of Coffee Shops from around the World!</h6>
-            <p>
-                <a href="/cafes/new" class="btn btn-lg yellow btn-primary" style="margin: 20px 0;">Create New Cafe</a>
-            </p>
+            <h1 class="display-4 bg-text">Welcome to YelpCafe!</h1>
+            <h6 class="bg-text">View our selection of Coffee Shops from around the World!</h6>
+            <a href="/cafes/new" class="btn btn-lg yellow btn-primary">Create New Cafe</a>
         </div>
     </header>
 </div>
@@ -18,15 +16,17 @@
     <section class="row text-center">
         <% cafes.forEach(e => { %>
             <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="card" id="cafe-card">
-                    <a href="/cafes/<%= e._id %>">
+                <a href="/cafes/<%= e._id %>" id="card-link">
+                    <div class="card" id="cafe-card">
                         <img src="<%= e.img %>" class="thumb card-img-top" alt="<%= e.name %>">
-                    </a>
-                    <div class="card-body d-flex flex-column justify-content-center;">
-                        <h5 class="card-title mt-auto"><%= e.name %></h5>
-                        <a href="/cafes/<%= e._id %>" class="btn blue align-items-end mt-auto">Show Info</a>
+                        <div class="card-body">
+                            <h6 class="card-text"><%= e.name %></h6>
+                            <!--
+                            <a href="/cafes/<%= e._id %>" class="btn blue align-items-end mt-auto">Show Info</a>
+                            -->
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
         <% }) %>
     </section>

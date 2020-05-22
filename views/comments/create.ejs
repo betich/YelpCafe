@@ -1,15 +1,25 @@
-<%- include("../partials/header") %>
+<%- include("../partials/form-header") %>
 
 <div class="container-fluid">
     <h1 class="form-title">Create a new Comment to <%= cafe.name %></h1>
     <div class="row">
         <div style="width:calc(30% + 27vh);margin:24px auto;">
             <form action="/cafes/<%= cafe._id %>/comments" method="POST">
-                <div class="form-group">
-                    <textarea class="form-control" name="comment[text]" autofocus></textarea>
+                <!-- Star Rating -->
+                <div class="form-group icons">
+                    <i star-rating="1" class="fas fa-star star"></i>
+                    <i star-rating="2" class="fas fa-star star"></i>
+                    <i star-rating="3" class="fas fa-star star"></i>
+                    <i star-rating="4" class="fas fa-star star"></i>
+                    <i star-rating="5" class="fas fa-star star"></i>
+                    <input type="number" name="comment[rating]" id="starInput" value="3" required>
+                    <p class="preview" id="starPreview">Click on the Stars to Rate them!</p>
                 </div>
                 <div class="form-group">
-                    <input type="submit" class="btn brown btn-lg btn-block btn-primary" value="Create Comment">
+                    <textarea class="form-control" name="comment[text]" autofocus required></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn blue btn-lg btn-block btn-primary" value="Create Comment">
                 </div>
             </form>
             <a href="/cafes/<%= cafe._id %>">Go Back</a>
@@ -17,4 +27,4 @@
     </div>
 </div>
 
-<%- include("../partials/footer") %>
+<%- include ("../partials/form-footer") %>

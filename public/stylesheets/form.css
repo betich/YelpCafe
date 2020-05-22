@@ -1,0 +1,95 @@
+:root {
+    --starColor: green;
+    --priceColor: green;
+}
+i.\.hoveredStars, i.\.clickedStars {
+    background-color: var(--starColor) !important;
+}
+i.\.hoveredDollars, i.\.clickedDollars {
+    color: var(--priceColor) !important;
+}
+
+/* Doc Styles */
+
+* {
+	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
+}
+body {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	overflow-x: hidden;
+}
+
+.form-title {
+	text-align: center;
+	margin: 50px 0;
+    font-size: calc(1rem + 25px);
+    font-family: 'mukta', sans-serif;
+}
+
+input[type="password"]:invalid {
+	border: 2px solid red;
+}
+input[type="number"] {
+	display: none;
+}
+
+textarea {
+	resize: none;
+	height: 200px;
+}
+
+a {
+	color: rgb(67, 150, 118);
+}
+a:hover {
+	color: rgb(37, 119, 78);
+	text-decoration: none;
+}
+
+.btn { transition: .3s ease-in-out; }
+.blue {
+	background: #3d4c6c;
+	color: white;
+}
+.blue:hover {
+	background: #281f77;
+	color: white;
+}
+
+#flash {
+	margin-top: 15px;
+}
+
+.preview {
+	display: inline;
+	margin-left: 15px;
+}
+
+.icons {
+	margin: 30px 0;
+}
+.icons label {
+	margin-right: 10px;
+}
+.icons > i {
+	user-select: none;
+	color: white;
+	background-color: #bbb;
+	font-size: 1.2em;
+	transition: 0.1s ease-in-out;
+	padding: 0.45em 0.5em;
+	border-radius: 10px;
+}
+.icons > .price {
+  background-color: rgba(0, 0, 0, 0);
+  color: #bbb;
+  padding: 5px;
+  font-size: 2em; 
+  letter-spacing: -8px;
+}
+.icons > .star:hover { box-shadow: 1px 1.5px 3px #555; }
+.icons > i:hover { transform: translate(0, -3px); }
+.icons > i:active { transform: translate(0, 1px); }

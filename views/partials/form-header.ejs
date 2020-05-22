@@ -9,14 +9,15 @@
     <title>YelpCafe</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="/stylesheets/landing.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/form.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;600;700;800&display=swap" rel="stylesheet"> 
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 </head>
 <body>
-     <!-- Flash Messages -->
-     <div class="container">
+    <!-- Flash Messages -->
+    <header class="container" id="flash">
         <% if(msg_error && msg_error.length > 0) { %>
             <div class="alert alert-danger" role="alert">
                 <%= msg_error %>
@@ -26,39 +27,4 @@
                 <%= msg_success %>
             </div>
         <% } %>
-    </div>
-    
-    <div class="container" id="landing-header">
-        <h1>YelpCafe</h1>
-
-        <p>The best place to find cafes submitted by users from around the internet.</p>
-
-        <a href="/cafes" class="btn btn-lg salmon">See All Cafes</a>
-    </div>
-
-    <div id="slide-container">
-        <ul class="slideshow">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-    </div>
-    
-    <main>
-        <section class="container-fluid block bgwhite">
-            <h1>Testo</h1>
-            <p>What the fuck is this?</p>
-        </section>
-        <section class="container-fluid block bgblue">
-            <h1>Testa</h1>
-            <p>What the fuck is this too?</p>
-        </section>
-        <section class="container-fluid block bgbrown">
-            <h1>Teste</h1>
-            <p>What the fuck is this really?</p>
-        </section>
-    </main>
-        
-<%- include ("partials/footer") %>
+    </header>

@@ -26,7 +26,7 @@ app.use(methodOverride('_method')); // Lets you use PUT, DELETE verbs by overrid
 app.use(flash());
 app.use(require('helmet')());
 
-seedDB(); // Seed
+//seedDB(); // Seed
 
 // Passport settings
 

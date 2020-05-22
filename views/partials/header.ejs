@@ -13,6 +13,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;600;700;800&display=swap" rel="stylesheet"> 
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light sticky-top justify-content-between">
@@ -45,7 +46,7 @@
     </nav>
     
     <!-- Flash Messages -->
-    <header class="container">
+    <header class="container" id="flash">
     <% if(msg_error && msg_error.length > 0) { %>
         <div class="alert alert-danger" role="alert">
             <%= msg_error %>

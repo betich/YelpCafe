@@ -21,7 +21,10 @@ router
         }
         User.authenticate("local")(req, res, () => {
             req.flash('success', "Welcome, " + user.username);
-            res.redirect('/cafes');
+            req.login(user, (err) => {
+                if(err) req.flash('error', err.message);
+                res.redirect('/cafes');
+            });
         });
     });
 })

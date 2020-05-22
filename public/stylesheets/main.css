@@ -33,24 +33,37 @@ a i {
 
 #cafe-card {
 	margin: 1em auto;
-	min-width: 14rem;
-	max-width: 25rem;
-	min-height: 300px;
-}
-.thumb {
-	-webkit-filter: grayscale(100%);
-	filter: grayscale(100%);
+	min-width: 14em;
+	max-width: 25em;
+	min-height: 15em;
+	border: 1px solid rgb(221, 221, 221);
+	box-shadow: 0 1px 0 rgba(0, 0, 0, .4);
 	-webkit-transition: .3s ease-in-out;
 	transition: .3s ease-in-out;
-	padding: 0;
-	margin: 0;
+	overflow: hidden;
 }
-.thumb:hover {
+#card-link {
+	-webkit-filter: grayscale(100%);
+	filter: grayscale(100%);
+	-webkit-transition: .2s ease-in-out;
+	transition: .2s ease-in-out;
+	color: black;
+}
+#card-link:hover {
 	-webkit-filter: grayscale(0);
 	filter: grayscale(0);
 }
-.thumb-info .caption {
-	padding: 9px;
+#card-link:hover #cafe-card {
+	background: white;
+	background: linear-gradient(0deg, rgba(255,9,9,1) 0%, rgba(255,9,9,1) 1.5%, rgba(255,255,255,1) 1.5%, rgba(255,255,255,1) 100%); 
+	color: rgb(26, 26, 26);
+	transform: translate(3px, 3px);
+}
+.thumb {
+	padding: 0;
+	margin: 0;
+	min-height: 11.5em;
+	object-fit: cover;
 }
 
 #img-container {
@@ -72,21 +85,46 @@ a i {
 	max-height: 400px;
 }
 
-.text {
-	line-height: 24px;
+.desc {
+	line-height: 1.75em;
 	text-indent: 5px;
 }
+
 #comment {
-	margin: 7px 0 45px 0;
+	justify-content: center;
+	margin-bottom: 36px;
+}
+@media (max-width: 991px) {
+	#comment {
+		justify-content: start;
+	}
 }
 #comment p {
-	line-height: 3em;
+	line-height: 1.5em;
+	margin: 24px 0;
 }
-
-.form-title {
-	text-align: center;
-	margin-top: 75px;
-	font-size: calc(1rem + 25px);
+#profile-container {
+	background-color: rgb(115, 148, 162);
+	border-radius: 5px;
+	min-height: 48px;
+	max-height: 128px;
+	width: 48px;
+	padding: 0 24px;
+	margin-bottom: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 18px;
+}
+#comment-author {
+	font-size: 0.8em;
+	color: white;
+}
+.star { 
+	background-color: #bbb;
+	color: white;
+	padding: 6px;
+	border-radius: 5px;
 }
 
 .inline-btn {
@@ -98,6 +136,7 @@ a i {
 	padding: 20px;
 }
 .list-group-item {
+	font-size: 0.85em;
 	height: 70px;
 	display: flex;
 	align-items: center;
@@ -112,9 +151,27 @@ a i {
 	margin: 20px 0;
 }
 
-textarea {
-	resize: none;
-	height: 200px;
+.inline { 
+	margin-top: 20px;
+}
+.inline>* {
+	display: inline-block;
+	font-size: 1.2em;
+}
+.inline #price {
+	color: #74d4c0;
+	font-weight: bold;
+	margin: 0 1px;
+}
+.inline #star {
+	color: #d9455f;
+}
+.inline #reviews {
+	color: #291c14;
+}
+
+#flash {
+	margin-top: 15px;
 }
 
 /* Image on Text */
@@ -162,9 +219,15 @@ textarea {
 .bg-jumbo h1 {
 	color: white;
 	font-weight: bolder;
+	font-size:calc(2em + 3.5vw);
 }
 .bg-jumbo h6 {
-	color: rgb(228, 228, 228) !important;
+	color: rgb(228, 228, 228);
+	font-size:calc(0.75em + 0.75vw);
+	margin: 15px 0;
+}
+.bg-jumbo .btn {
+	margin: 40px 0;
 }
 
 /* BTN Colors */
@@ -190,12 +253,13 @@ textarea {
     color: rgb(39, 39, 39);
     margin-top: 30px;
     padding: 1em 1.2em;
-    border-radius: 50px;
+    border-radius: 25px;
 }
 .yellow:hover {
     background: rgb(255, 238, 6);
 	color: rgb(39, 39, 39);
 }
+
 
 /* Navbar */
 nav .navbar-brand {
@@ -209,6 +273,10 @@ nav {
 	width: 100%;
 	top: 0; left: 0; right: 0; bottom: 0;
 	position: sticky;
+}
+.nav-link { transition: .1s ease-in-out; }
+.nav-link:hover {
+	border-bottom:3px solid rgb(255, 83, 83);
 }
 #nav-container {
 	width: 100vw;

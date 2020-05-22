@@ -31,7 +31,7 @@ body {
 .bgbrown { background-color: #cca263; }
 .bgbrown>* { color: #f6f6f6; }
 
-.yellow {
+.salmon {
 	background: rgb(255, 91, 73);
     color: whitesmoke;
     transition: .3s ease-in-out;
@@ -39,7 +39,7 @@ body {
     padding: 1em 1.2em;
     border-radius: 50px;
 }
-.yellow:hover {
+.salmon:hover {
     background: rgb(201, 64, 98);
 	color: whitesmoke;
 }

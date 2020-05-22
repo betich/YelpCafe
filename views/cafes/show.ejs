@@ -1,6 +1,35 @@
 <%- include("../partials/header") %>
 
-<% var reviews=0; for (let p in cafe.comments) {reviews++;} %> 
+<%  var reviews=0, price = '', ratings = 0; date = new Date();
+    cafe.comments.forEach(comment => {reviews++;});
+    for (let i=0; i<cafe.price; i++) { price += '<i class="fas fa-dollar-sign"></i>' }
+    cafe.comments.forEach(comment => { ratings += comment.rating; });
+    ratings /= cafe.comments.length
+    ratings ? ratings = ratings.toFixed(1) : ratings = "No Reviews"
+    
+    function timeDiff(t1, t2) {
+	    let dt = Math.abs(t2.getTime() - t1.getTime());
+        let diffMin = Math.abs(dt / (1000 * 60));
+        // seconds
+        if (diffMin*60 < 60) return timeStamp(diffMin*60, "second")
+        // minutes
+        if (diffMin < 60) return timeStamp(diffMin, "minute")
+        // hours
+        if (diffMin/60 < 24) return timeStamp(diffMin/60, "hour")
+        // days
+        if (diffMin/60/24 < 31) return timeStamp(diffMin/60/24, "day")
+        // months
+        if (diffMin/60/24/31 < 12) return timeStamp(Math.abs(t2.getMonth()-t1.getMonth()), "month")
+        // years
+        if (diffMin/60/24/31/12 >= 1) return timeStamp(diffMin/60/24/31/12, "year")
+
+        function timeStamp(time, unit) {
+        	time = Math.floor(time);
+        	if (time == 1) return `${time} ${unit} ago`
+            else return `${time} ${unit}s ago` 
+        }
+    }
+%>
 
 <div id="img-container">
     <!-- Container for image-->
@@ -33,8 +62,11 @@
                 </div> 
             <% } %>
 
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
-                &nbsp;&bull;&nbsp;<%= reviews %> reviews&nbsp;&bull;&nbsp;$$
+            <div class="inline">
+                <p id="star"><%= ratings %> <i class="fas fa-star"></i> &bull;</p>
+                <p id="reviews"><%= reviews %> reviews &bull;</p>
+                <p id="price"><%- price %></p>
+            </div>
             <hr>
         </section>
     </div>
@@ -42,7 +74,7 @@
         <section class="col-md-8">
             <!-- Main Content -->
             <section class="content-block">
-                <p class="text"><%= cafe.description %></p>
+                <p class="desc"><%= cafe.description %></p>
             </section>
             <!-- Comments -->
             <section class="card card-body bg-light content-block">
@@ -53,27 +85,38 @@
                 <hr>
                 <% cafe.comments.forEach(comment => { %>
                     <div class="row" id="comment">
-                        <div class="col-md-2">
-                            <strong><a><%= comment.author.username %></a></strong>
-                        </div>
-                        <div class="col-md-10">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
-                                <span class="float-right">10 days ago</span><br>
-                                <p><%= comment.text %></p>
-
-                                <% if(user && comment.author.id.equals(user._id)) { %>
-                                    <a class="btn btn-sm btn-warning"
-                                        href="/cafes/<%= cafe._id %>/comments/<%= comment._id %>/edit">
-                                        <i class="fas fa-edit"></i> Edit
-                                    </a>
-                                    <div class="inline-btn">
-                                        <form action="/cafes/<%= cafe._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
-                                            <button class="btn btn-sm btn-danger">
-                                              <i class="fas fa-trash-alt"></i> Delete
-                                            </button>
-                                          </form>
+                            <div class="col-md-2" id="author-column">
+                                <a href="#" id="comment-author">
+                                    <div id="profile-container">
+                                        <b><%= comment.author.username[0] %></b>
                                     </div>
+                                </a>
+                                <h5><%= comment.author.username %></h5>
+                            </div>
+                        <div class="col-md-10">
+                            <div class="star-container">
+                                <% for(var i=0; i<comment.rating; i++) { %>
+                                    <i class="fas fa-star full star"></i>
+                                <% } for(let j=i; j<5; j++) { %>
+                                    <i class="fas fa-star star"></i>
                                 <% } %>
+                                <span class="float-right"><%- timeDiff(comment.date, date) %></span><br>
+                            </div>
+                            <p><%= comment.text %></p>
+
+                            <% if(user && comment.author.id.equals(user._id)) { %>
+                                <a class="btn btn-sm btn-warning"
+                                    href="/cafes/<%= cafe._id %>/comments/<%= comment._id %>/edit">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+                                <div class="inline-btn">
+                                    <form action="/cafes/<%= cafe._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                                        <button class="btn btn-sm btn-danger">
+                                          <i class="fas fa-trash-alt"></i> Delete
+                                        </button>
+                                      </form>
+                                </div>
+                            <% } %>
                         </div>
                     </div>
                 <% }) %>
@@ -91,6 +134,13 @@
     </div>
 </div>
 
-<div style="height:300px;"></div>
+<script type="text/javascript">
+    var hues = [53, 30, 14, 344, 0];
+    var icons = $(".star-container");
+    icons.each(function() {
+        let i = $(this).find(".full").length - 1; // Array index
+        $(this).find(".full").css("background-color", `hsl(${hues[i]}, 85%, 55%)`);
+    });
+</script>
 
 <%- include("../partials/footer") %>

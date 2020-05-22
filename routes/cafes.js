@@ -21,11 +21,12 @@ router
     let name = req.body.name;
     let image = req.body.image;
     let desc = req.body.description;
+    let price = req.body.price;
     let author = {
         id: req.user._id,
         username: req.user.username
     }
-    let newCafe = {name: name, img: image, description: desc, author:author};
+    let newCafe = {name: name, img: image, description: desc, price: price, author:author};
     Cafe.create(newCafe, (err, cafe) => {
         if (err) {
             req.flash('error', err.message);

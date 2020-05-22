@@ -4,6 +4,7 @@ var Cafe    = require('../models/cafes'),
 var middleware = {
     checkOwnership: (req, res, next) => {
         if(req.isAuthenticated()) {
+            delete req.session.returnTo;
             // Is the user authorized?
             Cafe.findById(req.params.id, (err, foundCafe) => {
                 if(err || !foundCafe) {
@@ -25,6 +26,7 @@ var middleware = {
     },
     checkCommentOwnership: (req, res, next) => {
         if(req.isAuthenticated()) {
+            delete req.session.returnTo;
             // Is the user authorized?
             Comment.findById(req.params.comment_id, (err, foundComment) => {
                 if(err) {
@@ -52,6 +54,7 @@ var middleware = {
     },
     checkLogin: (req, res, next) => {
         if(req.isAuthenticated()) {
+            delete req.session.returnTo;
             next();
         } else {
             req.flash('error', "You need to be logged in first");

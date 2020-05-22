@@ -25,6 +25,7 @@ router
             res.redirect('back');
         }
         else {
+            req.body.comment.date = new Date();
             Comment.create(req.body.comment, (err, comment) => {
                 if (err) {
                     req.flash('error', err.message);
