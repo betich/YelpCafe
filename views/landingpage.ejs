@@ -5,14 +5,14 @@
     <meta name="description" content="The Place to find all your favorite cafes.">
     <meta name="keywords" content="Yelp, YelpCafe, Cafe, Yelp cafe">
     <meta name="author" content="bTch">
-    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>YelpCafe</title>
+    <link rel="icon" href="/img/favicon.svg">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="/stylesheets/landing.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;600;700;800&display=swap" rel="stylesheet"> 
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 </head>
 <body>
      <!-- Flash Messages -->
@@ -28,13 +28,18 @@
         <% } %>
     </div>
     
-    <div class="container" id="landing-header">
+    <!-- Slideshow -->
+    <header class="container" id="landing-header">
         <h1>YelpCafe</h1>
 
-        <p>The best place to find cafes submitted by users from around the internet.</p>
+        <p>The best place to find cafes, submitted by users from around the internet.</p>
 
-        <a href="/cafes" class="btn btn-lg salmon">See All Cafes</a>
-    </div>
+        <a href="/cafes" class="btn btn-lg salmon">Start Now</a>
+
+        <div class="btn-center" id="scrolldown">
+            <a href="#first" class="btn btn-lg scroll-btn"><i class="fas fa-arrow-down"></i></a>
+        </div>
+    </header>
 
     <div id="slide-container">
         <ul class="slideshow">
@@ -47,18 +52,123 @@
     </div>
     
     <main>
-        <section class="container-fluid block bgwhite">
-            <h1>Testo</h1>
-            <p>What the fuck is this?</p>
+        <!-- Explaination -->
+        <section class="container-fluid bg1">
+            <div class="container block" id="first">
+                <h1>How this site works</h1>
+                <p>It works somehow</p>
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 info-col">
+                        <h1><i class="fas fa-mug-hot fa-3x"></i></h1>
+                        <h4>wowow</h4>
+                        <p>Pariatur reprehenderit laborum sint fugiat sit voluptate nulla. Excepteur ullamco velit aute sit. Mollit consequat cillum eu commodo aute ad laboris et quis mollit laboris. Do nostrud sint officia eu ut officia ipsum ullamco anim sit dolore enim excepteur. Id ut ut sint cupidatat tempor dolore ullamco nulla. Commodo et laborum magna est irure esse aliqua aliqua ullamco sint excepteur nostrud. Ipsum incididunt qui excepteur reprehenderit magna nulla cupidatat.</p>
+                    </div>
+                    <div class="col-lg-4 col-md-12 info-col">
+                        <h1><i class="fas fa-globe-americas fa-3x"></i></h1>
+                        <h4>wowow</h4>
+                        <p>Pariatur reprehenderit laborum sint fugiat sit voluptate nulla. Excepteur ullamco velit aute sit. Mollit consequat cillum eu commodo aute ad laboris et quis mollit laboris. Do nostrud sint officia eu ut officia ipsum ullamco anim sit dolore enim excepteur. Id ut ut sint cupidatat tempor dolore ullamco nulla. Commodo et laborum magna est irure esse aliqua aliqua ullamco sint excepteur nostrud. Ipsum incididunt qui excepteur reprehenderit magna nulla cupidatat.</p>
+                    </div>
+                    <div class="col-lg-4 col-md-12 info-col">
+                        <h1><i class="fas fa-map-marker-alt fa-3x"></i></h1>
+                        <h4>wowow</h4>
+                        <p>Pariatur reprehenderit laborum sint fugiat sit voluptate nulla. Excepteur ullamco velit aute sit. Mollit consequat cillum eu commodo aute ad laboris et quis mollit laboris. Do nostrud sint officia eu ut officia ipsum ullamco anim sit dolore enim excepteur. Id ut ut sint cupidatat tempor dolore ullamco nulla. Commodo et laborum magna est irure esse aliqua aliqua ullamco sint excepteur nostrud. Ipsum incididunt qui excepteur reprehenderit magna nulla cupidatat.</p>
+                    </div>
+                </div>
+            </div>
         </section>
-        <section class="container-fluid block bgblue">
-            <h1>Testa</h1>
-            <p>What the fuck is this too?</p>
+        <!-- FAQ -->
+        <section class="container-fluid bg2">
+            <div class="container block">
+                <h1>Frequently Asked Questions</h1>
+                <p>What the feck is this too?</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- 1 -->
+                        <div class="faq">
+                            <a class="toggle" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1">
+                                <div class="faq-header">
+                                    <h5>hahuiuh uoh uohj hihuo huo hu h huuhuhninuun</h5>
+                                </div>
+                            </a>
+                            <div class="collapse" id="collapse1">
+                                <p class="show-text">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.</p>
+                            </div>
+                        </div>
+                        <!-- 2 -->
+                        <div class="faq">
+                            <a class="toggle" data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse2">
+                                <div class="faq-header">
+                                    <h5>hahuiuh uoh uohj hihuo huo hu h huuhuhninuun</h5>
+                                </div>
+                            </a>
+                            <div class="collapse" id="collapse2">
+                                <p class="show-text">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.</p>
+                            </div>
+                        </div>
+                        <!-- 3 -->
+                        <div class="faq">
+                            <a class="toggle" data-toggle="collapse" href="#collapse3" role="button" aria-expanded="false" aria-controls="collapse3">
+                                <div class="faq-header">
+                                    <h5>hahuiuh uoh uohj hihuo huo hu h huuhuhninuun</h5>
+                                </div>
+                            </a>
+                            <div class="collapse" id="collapse3">
+                                <p class="show-text">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <!-- 4 -->
+                        <div class="faq">
+                            <a class="toggle" data-toggle="collapse" href="#collapse4" role="button" aria-expanded="false" aria-controls="collapse4">
+                                <div class="faq-header">
+                                    <h5>hahuiuh uoh uohj hihuo huo hu h huuhuhninuun</h5>
+                                </div>
+                            </a>
+                            <div class="collapse" id="collapse4">
+                                <p class="show-text">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.</p>
+                            </div>
+                        </div>
+                        <!-- 5 -->
+                        <div class="faq">
+                            <a class="toggle" data-toggle="collapse" href="#collapse5" role="button" aria-expanded="false" aria-controls="collapse5">
+                                <div class="faq-header">
+                                    <h5>hahuiuh uoh uohj hihuo huo hu h huuhuhninuun</h5>
+                                </div>
+                            </a>
+                            <div class="collapse" id="collapse5">
+                                <p class="show-text">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
-        <section class="container-fluid block bgbrown">
-            <h1>Teste</h1>
-            <p>What the fuck is this really?</p>
+        <!-- Quote -->
+        <section class="container-fluid bg1 quote">
+            <div class="row block">
+                <div class="col-md-9">
+                    <blockquote>"Culpa ut dolor dolore qui. Laborum veniam ut et officia tempor cillum sunt pariatur anim duis ex. Nisi in Lorem occaecat aliquip laboris mollit excepteur. Ad sit sit velit commodo non ex labore aliquip consequat qui mollit minim velit. Laboris esse eu consequat tempor dolor consequat."</blockquote>
+                </div>
+                <div class="col-md-3 profile-container">
+                    <img class="profilepic" src="https://images.pexels.com/photos/556666/pexels-photo-556666.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260">
+                    <legend>John Doe</legend>
+                    <p id="sublegend">Some lad we picked up on the street</p>
+                </div>
+            </div>
         </section>
+        <section class="container-fluid" id="bg3">
+            <div class="container block">
+                <h1>Ready to Join Us?</h1>
+                <div class="d-flex justify-content-center">
+                    <a class="btn btn-lg" id="register" href="/register">Sign up now, it's free!</a>
+                </div>
+            </div>
+        </section>
+        <!-- Back to top -->
+        <div class="btn-center" id="scrollup">
+            <a href="#" class="btn btn-lg scroll-btn"><i class="fas fa-arrow-up"></i></a>
+        </div>
     </main>
-        
+
 <%- include ("partials/footer") %>

@@ -1,8 +1,23 @@
 <footer class="container-fluid" id="footer">
-    <p>&copy;YelpCafe 2020</p>
+    <p>&copy;YelpCafe 2020, all rights reserved.</p>
 </footer>
+<script>
+  function checkWinSize() {
+    if ($(window).width() > 992) {
+      $(window).scroll(function() {
+        if ($(document).scrollTop() > 50) {
+          $('nav').add("#nav-container").add(".collapser").addClass("shrink");
+        } else {
+          $('nav').add("#nav-container").add(".collapser").removeClass("shrink");
+        }
+      });
+    } else $(window).unbind();
+  }
+
+  window.setInterval(checkWinSize, 500);
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" async></script>
 </body>
 </html>

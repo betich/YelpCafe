@@ -14,7 +14,7 @@ var On = {
 	},
 	hoverIn: function(args) {
 		return function() {
-			const currIndex = $(this).index() - 1;
+			const currIndex = $(this).index();
 			let rating = parseInt($(args.formInput).val());
 
 			// If the hovered star is higher than the clicked star, assign the color

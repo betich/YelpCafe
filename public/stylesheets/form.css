@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,700;1,400&display=swap');
+
 :root {
     --starColor: green;
     --priceColor: green;
@@ -13,20 +16,49 @@ i.\.hoveredDollars, i.\.clickedDollars {
 
 * {
 	box-sizing: border-box;
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Open Sans', sans-serif;
+	color: white;
+	font-size: 16px;
 }
 body {
 	margin: 0;
 	padding: 0;
 	border: 0;
 	overflow-x: hidden;
+	background-color: rgb(49, 49, 49);
+}
+
+.form {
+	width: 100vw;
+	height: 80vh;
+	position: absolute;
+	left: 50%;
+	margin: auto;
+}
+.contents {
+	position: relative;
+	left: -50%;
+	width: calc(40% + 20vh);
+	margin: 24px auto;
 }
 
 .form-title {
+	position: relative;
 	text-align: center;
-	margin: 50px 0;
-    font-size: calc(1rem + 25px);
-    font-family: 'mukta', sans-serif;
+	margin: 30px auto;
+	padding-bottom: 10px;
+	width: 100%;
+    font-size: calc(1.5vw + 1.75rem);
+	font-family: 'Bitter', sans-serif;
+	font-weight: bold;
+	color: rgb(255, 255, 255);
+	border-bottom: 5px solid rgb(124, 18, 238);
+	line-height: 1.5em;
+}
+.cafe-name {
+	background-color: rgb(255, 81, 0);
+	color: white;
+	font-size: calc(1.5vw + 1.8rem);
 }
 
 input[type="password"]:invalid {
@@ -39,23 +71,40 @@ input[type="number"] {
 textarea {
 	resize: none;
 	height: 200px;
+	min-height: 150px;
+}
+
+a.navbar-brand {
+	font-family: 'Bitter', serif;
+	color: rgb(255, 255, 255) !important;
+	transition: .1s ease-in-out;
+}
+a.navbar-brand:hover { border-bottom: 3px solid rgb(255, 83, 83); }
+a.nav-link, a.navbar-brand i {
+	color: rgb(255, 255, 255) !important;
+	transition: .1s ease-in-out;
+}
+a.nav-link:hover { border-bottom: 3px solid rgb(255, 83, 83); }
+.bg-dark {
+	background-color: #252020 !important;
+	margin-bottom: 50px;
 }
 
 a {
-	color: rgb(67, 150, 118);
+	color: rgb(202, 255, 202);
 }
 a:hover {
-	color: rgb(37, 119, 78);
+	color: rgb(147, 255, 172);
 	text-decoration: none;
 }
 
 .btn { transition: .3s ease-in-out; }
 .blue {
-	background: #3d4c6c;
+	background: rgb(143, 52, 255);
 	color: white;
 }
 .blue:hover {
-	background: #281f77;
+	background: rgb(87, 36, 164);
 	color: white;
 }
 

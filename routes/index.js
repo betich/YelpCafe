@@ -8,6 +8,10 @@ router
     res.render("landingpage");
 })
 
+.get('/about', (req,res) => {
+    res.render("about");
+})
+
 .get('/register', (req, res) => {
     res.render('register');
 })

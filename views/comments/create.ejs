@@ -1,9 +1,11 @@
 <%- include("../partials/form-header") %>
 
-<div class="container-fluid">
-    <h1 class="form-title">Create a new Comment to <%= cafe.name %></h1>
+<div class="container-fluid form">
     <div class="row">
-        <div style="width:calc(30% + 27vh);margin:24px auto;">
+        <div class="contents">
+            <h1 class="form-title">Create a new Review to<br>
+                <span class="cafe-name"><%= cafe.name %></span>
+            </h1>
             <form action="/cafes/<%= cafe._id %>/comments" method="POST">
                 <!-- Star Rating -->
                 <div class="form-group icons">

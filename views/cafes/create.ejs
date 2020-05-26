@@ -1,10 +1,10 @@
 <%- include('../partials/form-header')%>
 
-<div class="container-fluid">
-    <h1 class="form-title">Create a new Cafe</h1>
+<div class="container-fluid form">
     <div class="row">
-        <div style="width:calc(30% + 27vh);margin:24px auto;">
+        <div class="contents">
             <form action="/cafes" method="POST">
+                <h1 class="form-title">Create a new Cafe</h1>
                 <div class="form-group">
                     <input type="text" class="form-control" name="name" placeholder="Name" required>
                 </div>

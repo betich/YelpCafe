@@ -1,9 +1,9 @@
 <%- include('../partials/form-header')%>
 
-<div class="container-fluid">
-    <h1 class="form-title">Edit <%= cafe.name %></h1>
+<div class="container-fluid form">
     <div class="row">
-        <div style="width:calc(30% + 20vh);margin:24px auto;">
+        <div class="contents">
+            <h1 class="form-title">Edit <%= cafe.name %></h1>
             <form action="/cafes/<%= cafe._id %>?_method=PUT" method="POST">
                 <div class="form-group">
                     <input type="text" value="<%= cafe.name %>" class="form-control" name="cafe[name]" placeholder="Name" required>
@@ -27,7 +27,6 @@
                     <input type="submit" class="btn blue btn-lg btn-block btn-primary" value="Update Cafe">
                 </div>
             </form>
-            <a href="/cafes/<%= cafe._id %>">Go Back</a>
         </div>
     </div>
 </div>
