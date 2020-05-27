@@ -5,7 +5,7 @@ var express = require('express'),
 
 router
 .get('/', (req,res) => {
-    Cafe.find({}, (err, allCafes) => {
+    Cafe.find({}).populate("comments").exec((err, allCafes) => {
         if (err) {
             req.flash('error', err.message);
             res.redirect('back');

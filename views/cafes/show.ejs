@@ -4,8 +4,8 @@
     cafe.comments.forEach(comment => {reviews++;});
     for (let i=0; i<cafe.price; i++) { price += '<i class="fas fa-dollar-sign"></i>' }
     cafe.comments.forEach(comment => { ratings += comment.rating; });
-    ratings /= cafe.comments.length
-    ratings ? ratings = ratings.toFixed(1) : ratings = "No Reviews"
+    ratings /= cafe.comments.length;
+    ratings ? ratings = ratings.toFixed(1) : ratings = "No Reviews";
     
     function timeDiff(t1, t2) {
 	    let dt = Math.abs(t2.getTime() - t1.getTime());
@@ -33,7 +33,7 @@
 
 <div id="img-container">
     <!-- Container for image-->
-    <div class="image" style="background-image: url('<%= cafe.img %>');">
+    <div class="image-bg" style="background-image: url('<%= cafe.img %>');">
     </div>
 </div>
 

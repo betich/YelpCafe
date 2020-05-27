@@ -1,6 +1,12 @@
-var mongoose    = require('mongoose');
-    Cafe        = require('./models/cafes');
-    Comment     = require('./models/comments')
+var mongoose    = require('mongoose'),
+    Cafe        = require('./models/cafes'),
+    Comment     = require('./models/comments');
+
+// Admin Object
+let admin = {
+    id: "5ebd80b7c56ace27f4273131",
+    username: "Admin"
+};
 
 async function seedDB() {
     await Cafe.deleteMany({});
@@ -8,22 +14,18 @@ async function seedDB() {
 
     for(const seed of seeds) {
         let cafe = await Cafe.create(seed);
-        //let comment = await Comment.create({
-        //    "text": "Nice place, would return.",
-        //    "author": "Joe"
-        //});
-        //cafe.comments.push(comment);
+        let comment = await Comment.create({
+            "text": "Nice place.",
+            "author": admin,
+            "date": new Date(),
+            "rating": 3
+        });
+        cafe.comments.push(comment);
         cafe.save();
     }
 };
 
 module.exports = seedDB;
-
-// Admin Object
-let admin = {
-    id: "5ebd80b7c56ace27f4273131",
-    username: "Admin"
-};
 
 var seeds = [
     {
@@ -65,7 +67,7 @@ var seeds = [
         "name": "Yelo House",
         "img": "/img/yelo.jpg",
         "description": "Barista that affogato single origin, siphon beans redeye carajillo eu shop id frappuccino. Flavour acerbic at robusta and sit breve galão espresso body rich. Sugar cinnamon viennese, acerbic et, id aftertaste espresso ristretto caramelization. Frappuccino est, cinnamon roast coffee est single origin.",
-        "price": 4,
+        "price": 2,
         "author": admin
     },
     {

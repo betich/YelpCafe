@@ -1,12 +1,25 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 @import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,700;1,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
 
 * {
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     color: rgb(240, 240, 240);
     margin: 0 auto;
+}
+
+::-moz-selection {
+	background-color:whitesmoke;
+	color:#4d3736;
 }
 
 ::selection {
@@ -63,10 +76,19 @@ legend {
     text-align: left;
 }
 .profile-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
 }
 .profilepic {
     width: 150px;
@@ -99,7 +121,7 @@ legend {
     top: 94vh;
 }
 #scrollup {
-    bottom: 12vh;
+    bottom: 24vh;
 }
 
 .info-col {
@@ -110,6 +132,14 @@ legend {
     margin: 20px 0 25px 0;
 }
 
+#first a {
+    color: rgb(253, 98, 81);
+}
+#first a[href]:hover {
+    color: red;
+    text-decoration: none;
+}
+
 .block {
     position: relative;
     padding: 30px;
@@ -118,6 +148,7 @@ legend {
     text-align: center;
 }
 .block * { color: #4d3736; }
+.block *::-moz-selection { background-color: #322616; color: whitesmoke; }
 .block *::selection { background-color: #322616; color: whitesmoke; }
 
 .block h1 { 
@@ -134,6 +165,11 @@ legend {
 
 #bg3 { background-color: #232323; }
 #bg3 * { color: whitesmoke; }
+
+#bg3  *::-moz-selection {
+    background-color: whitesmoke;
+    color: #232323;
+}
 
 #bg3  *::selection {
     background-color: whitesmoke;
@@ -165,19 +201,26 @@ legend {
 }
 .collapsing {
     margin-top: 0;
-    transition-delay: .3s;
-    transition-timing-function: linear;
+    -webkit-transition-delay: .3s;
+         -o-transition-delay: .3s;
+            transition-delay: .3s;
+    -webkit-transition-timing-function: linear;
+         -o-transition-timing-function: linear;
+            transition-timing-function: linear;
 }
 
 .salmon {
     position: relative;
 	background: rgb(255, 91, 73);
     color: whitesmoke;
+    -webkit-transition: .3s ease-in-out;
+    -o-transition: .3s ease-in-out;
     transition: .3s ease-in-out;
-    padding: 1.4em 1.7em;
+    padding: 1.2em 1.7em;
     border-radius: 15px;
     border: 5px double rgb(32, 32, 32);
     margin: 30px auto 0 auto;
+    font-weight: bold;
 }
 .salmon:hover {
     background: rgb(235, 26, 78);
@@ -193,6 +236,8 @@ legend {
     border-radius: 15px;
     padding: 1em 1.2em;
     margin: 40px auto 100px auto;
+    -webkit-transition: .1s ease-in-out;
+    -o-transition: .1s ease-in-out;
     transition: .1s ease-in-out;
 }
 #register:hover {
@@ -211,9 +256,22 @@ legend {
     font-family: 'Open Sans', sans-serif;
     z-index: 1;
 }
+#footer > *::-moz-selection {
+	background: whitesmoke;
+	color: rgb(51, 51, 51);
+}
 #footer > *::selection {
 	background: whitesmoke;
 	color: rgb(51, 51, 51);
+}
+#footer-links > * {
+    display: inline-block;
+	margin: 20px;
+	margin-top: 0;
+    color: white;
+}
+#footer-links > * :hover {
+	color: rgb(255, 102, 85);
 }
 
 /* Slideshow stuff */
@@ -263,26 +321,31 @@ legend {
     background-repeat: no-repeat;
     opacity: 0;
     z-index: 0;
-    animation: imgAnim 25s linear infinite;
+    -webkit-animation: imgAnim 25s linear infinite;
+            animation: imgAnim 25s linear infinite;
 }
 .slideshow li:nth-child(1) { 
     background-image: url(/img/bg1.jpg) 
 }
 .slideshow li:nth-child(2) { 
     background-image: url(/img/bg2.jpg);
-    animation-delay: 5s; 
+    -webkit-animation-delay: 5s;
+            animation-delay: 5s; 
 }
 .slideshow li:nth-child(3) { 
     background-image: url(/img/bg3.jpg);
-    animation-delay: 10s; 
+    -webkit-animation-delay: 10s;
+            animation-delay: 10s; 
 }
 .slideshow li:nth-child(4) { 
     background-image: url(/img/bg4.jpg);
-    animation-delay: 15s; 
+    -webkit-animation-delay: 15s;
+            animation-delay: 15s; 
 }
 .slideshow li:nth-child(5) { 
     background-image: url(/img/bg5.jpg);
-    animation-delay: 20s; 
+    -webkit-animation-delay: 20s;
+            animation-delay: 20s; 
 }
 .slideshow li:before {
     content: '';
@@ -292,18 +355,40 @@ legend {
 	bottom: 0;
 	left: 0;
 	background: rgb(34, 25, 18);
+	background: -o-linear-gradient(40deg, rgb(17, 13, 9) 21%, rgb(80, 60, 46) 76%);
 	background: linear-gradient(50deg, rgb(17, 13, 9) 21%, rgb(80, 60, 46) 76%);
 	opacity: 0.85;
+}
+
+@-webkit-keyframes imgAnim { 
+    0% {
+      opacity: 0; 
+      -webkit-animation-timing-function: ease-in; 
+              animation-timing-function: ease-in;
+    }
+    10% {
+      opacity: 1;
+      -webkit-animation-timing-function: ease-out;
+              animation-timing-function: ease-out;
+    }
+    20% {
+      opacity: 1
+    }
+    30% {
+      opacity: 0
+    }
 }
 
 @keyframes imgAnim { 
     0% {
       opacity: 0; 
-      animation-timing-function: ease-in;
+      -webkit-animation-timing-function: ease-in; 
+              animation-timing-function: ease-in;
     }
     10% {
       opacity: 1;
-      animation-timing-function: ease-out;
+      -webkit-animation-timing-function: ease-out;
+              animation-timing-function: ease-out;
     }
     20% {
       opacity: 1

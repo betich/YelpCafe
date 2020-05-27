@@ -6,27 +6,36 @@
         <div class="container bg-jumbo">
             <h1 class="display-4 bg-text">Welcome to YelpCafe!</h1>
             <h6 class="bg-text">View our selection of Coffee Shops from around the World!</h6>
-            <a href="/cafes/new" class="btn btn-lg pink btn-primary">Create New Cafe</a>
+            <a href="/cafes/new" class="btn btn-lg yellow btn-primary">Create New Cafe</a>
         </div>
     </header>
 </div>
 
 <!-- Container for all the cafes -->
 <div class="container">
-    <section class="row text-center">
-        <% cafes.forEach(e => { %>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <a href="/cafes/<%= e._id %>" id="card-link">
-                    <div class="card" id="cafe-card">
+    <section class="row">
+        <% cafes.forEach(e => {
+            var reviews=0, price = '', ratings = 0;
+            e.comments.forEach(comment => {reviews++;});
+            for (let i=0; i<e.price; i++) { price += '<i class="fas fa-dollar-sign"></i>'; }
+            e.comments.forEach(comment => { ratings += comment.rating; });
+            ratings /= e.comments.length;
+            ratings ? ratings = ratings.toFixed(1) : ratings = "No Reviews";
+        %>
+            <div class="col-md-4 col-sm-6">
+                <div class="card" id="cafe-card">
+                    <a href="/cafes/<%= e._id %>" id="card-link">
                         <img src="<%= e.img %>" class="thumb card-img-top" alt="<%= e.name %>">
-                        <div class="card-body">
-                            <h6 class="card-text"><%= e.name %></h6>
-                            <!--
-                            <a href="/cafes/<%= e._id %>" class="btn blue align-items-end mt-auto">Show Info</a>
-                            -->
+                    </a>
+                    <div class="card-body">
+                        <a href="/cafes/<%= e._id %>"><h6 class="card-title"><%= e.name %></h6></a>
+                        <div class="inline" id="card-cafe-infos">
+                            <p id="star"><%= ratings %> <i class="fas fa-star"></i> &bull;</p>
+                            <p id="reviews"><%= reviews %> reviews &bull;</p>
+                            <p id="price"><%- price %></p>
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
         <% }) %>
     </section>
