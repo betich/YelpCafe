@@ -5,6 +5,10 @@ var cafeSchema = new mongoose.Schema({
     img: String,
     description: String,
     price: Number,
+    siteurl: String,
+    email: String,
+    phone: String,
+    city: String,
     author: {
         id: {
             type: mongoose.Schema.Types.ObjectId,

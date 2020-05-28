@@ -5,26 +5,98 @@
         <div class="contents">
             <h1 class="form-title">Edit <%= cafe.name %></h1>
             <form action="/cafes/<%= cafe._id %>?_method=PUT" method="POST">
-                <div class="form-group">
-                    <input type="text" value="<%= cafe.name %>" class="form-control" name="cafe[name]" placeholder="Name" required>
+                <div class="form-group required mb-3">
+                    <label for="name">Name:</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-address-card"></i>
+                            </span>
+                        </div>
+                        <input id="name" type="text" value="<%= cafe.name %>" class="form-control" name="cafe[name]" placeholder="Name" required>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <input type="url" value="<%= cafe.img %>" class="form-control" name="cafe[img]" placeholder="Image URL" required>
+
+                <div class="form-group required mb-3">
+                    <label for="image">Image URL:</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-image"></i>
+                            </span>
+                        </div>
+                        <input id="image" type="url" value="<%= cafe.img %>" class="form-control" name="cafe[image]" placeholder="Image URL" required>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <textarea class="form-control" name="cafe[description]" placeholder="Description (Optional)"><%= cafe.description %></textarea>
+
+                <div class="form-group mb-3">
+                    <label for="description">Description:</label>
+                    <textarea id="description" class="form-control" value="<%= cafe.description %>" name="cafe[description]" placeholder="A Description"><%= cafe.description %></textarea>
                 </div>
+
+                <div class="form-row mb-3">
+                    <div class="col-md-6 mb-3">
+                        <label for="siteurl">Website URL:</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-link"></i>
+                                </span>
+                            </div>
+                            <input maxlength="35" id="siteurl" type="url" class="form-control" value="<%= cafe.website %>" name="cafe[siteurl]" placeholder="www.example.com">
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="email">Email:</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                            </div>
+                            <input maxlength="16" id="email" type="email" class="form-control" value="<%= cafe.email %>" name="cafe[email]" placeholder="john.doe@gmail.com">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row mb-3">
+                    <div class="col-md-6 mb-3">
+                        <label for="description">Phone Number:</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-phone"></i>
+                                </span>
+                            </div>
+                            <input maxlength="12" id="phone" type="text" class="form-control" value="<%= cafe.phone %>" name="cafe[phone]" placeholder="123-456-789">
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="city">City:</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-city"></i>
+                                </span>
+                            </div>
+                            <input id="city" type="text" class="form-control" value="<%= cafe.city %>" name="cafe[city]" placeholder="Amsterdam">
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Price Rating -->
-                <div class="form-group icons">
-                    <label for="priceInput">Cafe Price</label>
+                <div class="form-group icons required mb-3">
+                    <label for="priceInput">Cafe Price:</label>
                     <i price-rating="1" class="fas fa-dollar-sign price"></i>
                     <i price-rating="2" class="fas fa-dollar-sign price"></i>
                     <i price-rating="3" class="fas fa-dollar-sign price"></i>
+                    <i price-rating="4" class="fas fa-dollar-sign price"></i>
                     <input type="number" name="cafe[price]" id="priceInput" value="<%= cafe.price %>" required>
                     <p class="preview" id="pricePreview">Click on the Dollar!</p>
                 </div>
+
                 <div class="form-group">
-                    <input type="submit" class="btn blue btn-lg btn-block btn-primary" value="Update Cafe">
+                    <input type="submit" class="btn blue btn-lg btn-block" value="Edit Cafe">
                 </div>
             </form>
         </div>

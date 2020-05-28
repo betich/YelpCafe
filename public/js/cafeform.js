@@ -10,6 +10,7 @@ var On = {
 			$(this).siblings().filter(args.iconClass).removeClass(args.clickClass); // Reset Color
 			Rating.assignColor(args.hues[args.rating - 1], args.colorVar);
 			$(this).prevAll().addBack().addClass(args.clickClass);
+			console.log($(args.formInput).val())
 		};
 	},
 	hoverIn: function(args) {
@@ -135,8 +136,8 @@ $(document).ready(function() {
 		clickClass: '.clickedDollars',
 		valueAttr: 'price-rating',
 		colorVar: 'priceColor',
-		hues: [ 60, 74, 120 ],
-		ratingDesc: [ 'Cheap', 'Fair Price', 'Expensive' ]
+		hues: [ 60, 74, 90, 120 ],
+		ratingDesc: [ 'Cheap', 'Fair Price', 'Expensive', "Luxurious" ]
 	});
 	Dollar.init();
 });

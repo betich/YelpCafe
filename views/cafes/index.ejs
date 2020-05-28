@@ -30,7 +30,15 @@
                     <div class="card-body">
                         <a href="/cafes/<%= e._id %>"><h6 class="card-title"><%= e.name %></h6></a>
                         <div class="inline" id="card-cafe-infos">
-                            <p id="star"><%= ratings %> <i class="fas fa-star"></i> &bull;</p>
+                            <p id="star">
+                                <div class="star-container" style="margin-bottom: 1em;">
+                                <% for(var i=0; i<ratings; i++) { %>
+                                    <i class="fas fa-star full star" style="font-size: 1em;"></i>
+                                <% } for(let j=i; j<5; j++) { %>
+                                    <i class="fas fa-star star" style="font-size: 12px;"></i>
+                                <% } %>
+                                </div>
+                            </p><br>
                             <p id="reviews"><%= reviews %> reviews &bull;</p>
                             <p id="price"><%- price %></p>
                         </div>
@@ -39,6 +47,14 @@
             </div>
         <% }) %>
     </section>
-</div>  
+</div>
 
+<script type="text/javascript">
+    var hues = [53, 30, 14, 344, 0];
+    var icons = $(".star-container");
+    icons.each(function() {
+        let i = $(this).find(".full").length - 1; // Array index
+        $(this).find(".full").css("background-color", `hsl(${hues[i]}, 85%, 55%)`);
+    });
+</script>
 <%- include ("../partials/footer") %>

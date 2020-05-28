@@ -22,18 +22,22 @@ router
     let image = req.body.image;
     let desc = req.body.description;
     let price = req.body.price;
+    let siteurl = req.body.siteurl;
+    let email = req.body.email;
+    let phone = req.body.phone;
+    let city = req.body.city;
     let author = {
         id: req.user._id,
         username: req.user.username
     }
-    let newCafe = {name: name, img: image, description: desc, price: price, author:author};
+    let newCafe = {name: name, img: image, description: desc, price: price, author:author, website: siteurl, phone: phone, email: email, city: city};
     Cafe.create(newCafe, (err, cafe) => {
         if (err) {
             req.flash('error', err.message);
             res.redirect('/cafes');
         }
         else {
-            req.flash("Cafe " + cafe.name + " has been created by \'" + cafe.author.username + "\'");
+            req.flash('success', "Cafe \"" + cafe.name + "\" has been created by \'" + cafe.author.username + "\'");
             res.redirect('/cafes');
         } 
     });

@@ -125,12 +125,33 @@
 
         <!-- Info -->
         <section class="col-md-4 content-block">
-            <div class="sticky">
-            <ul class="list-group">
-                <li class="list-group-item"><i class="fas fa-phone mr-4"></i>(123) 456-789</li>
-                <li class="list-group-item"><i class="fas fa-directions mr-4"></i><a href="#">Get Directions</a></li>
-                <li class="list-group-item"><i class="fas fa-comment-dots mr-4"></i><a href="#">Leave a Message</a></li>
-            </ul>
+            <div class="sticky align-items-center">
+                <ul class="list-group">
+                    <% if(cafe.siteurl) { %>
+                    <li class="list-group-item">
+                        <p>
+                            <i class="fas fa-external-link-alt mr-4"></i><a href="<%= cafe.siteurl %>" target="_blank"><%= cafe.siteurl %></a>
+                        </p>
+                    </li>
+                    <% } %>
+                    <% if(cafe.email) { %>
+                    <li class="list-group-item">
+                        <p>
+                            <i class="fas fa-envelope mr-4"></i><a href="mailto:<%= cafe.email %>" target="_blank"><%= cafe.email %></a>
+                        </p>
+                    </li>
+                    <% } %>
+                    <% if(cafe.phone) { %>
+                    <li class="list-group-item">
+                        <p><i class="fas fa-phone mr-4"></i><%= cafe.phone %></p>
+                    </li>
+                    <% } %>
+                    <% if(cafe.city) { %>
+                    <li class="list-group-item">
+                        <p><i class="fas fa-city mr-4"></i><%= cafe.city %></p>
+                    </li>
+                    <% } %>
+                </ul>
             </div>
         </section>
     </div>

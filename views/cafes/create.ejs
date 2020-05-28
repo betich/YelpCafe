@@ -3,29 +3,96 @@
 <div class="container-fluid form">
     <div class="row">
         <div class="contents">
+            <h1 class="form-title">Create a new Cafe</h1>
             <form action="/cafes" method="POST">
-                <h1 class="form-title">Create a new Cafe</h1>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="name" placeholder="Name" required>
+                <div class="form-group required mb-3">
+                    <label for="name">Name:</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <i class="fas fa-address-card "></i>
+                        </div>
+                        <input id="name" type="text" class="form-control" name="name" placeholder="Name" required>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <input type="url" class="form-control" name="image" placeholder="Image URL" required>
+
+                <div class="form-group required mb-3">
+                    <label for="image">Image URL:</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fas fa-image"></i>
+                            </span>
+                        </div>
+                        <input id="image" type="url" class="form-control" name="image" placeholder="Image URL" required>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <textarea class="form-control" name="description" placeholder="Description (Optional)"></textarea>
+
+                <div class="form-group mb-3">
+                    <label for="description">Description:</label>
+                    <textarea id="description" class="form-control" name="description" placeholder="A Description"></textarea>
                 </div>
+
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="siteurl">Website URL:</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-link"></i>
+                                </span>
+                            </div>
+                            <input maxlength="35" id="siteurl" type="url" class="form-control" name="siteurl" placeholder="www.example.com">
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="email">Email:</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                            </div>
+                            <input maxlength="16" id="email" type="email" class="form-control" name="email" placeholder="john.doe@gmail.com">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row mb-3">
+                    <div class="col-md-6 mb-3">
+                        <label for="description">Phone Number:</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-phone"></i>
+                                </span>
+                            </div>
+                            <input maxlength="12" id="phone" type="text" class="form-control" name="phone" placeholder="123-456-789">
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="city">City:</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="fas fa-city"></i>
+                                </span>
+                            </div>
+                            <input id="city" type="text" class="form-control" name="city" placeholder="Amsterdam">
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Price Rating -->
-                <div class="form-group icons">
-                    <label for="priceInput">Cafe Price: </label>
+                <div class="form-group icons required mb-3">
+                    <label for="priceInput">Cafe Price:</label>
                     <i price-rating="1" class="fas fa-dollar-sign price"></i>
                     <i price-rating="2" class="fas fa-dollar-sign price"></i>
                     <i price-rating="3" class="fas fa-dollar-sign price"></i>
+                    <i price-rating="4" class="fas fa-dollar-sign price"></i>
                     <input type="number" name="price" id="priceInput" value="1" required>
                     <p class="preview" id="pricePreview">Click on the Dollar!</p>
                 </div>
-                <div class="form-group">
-                    <input type="number" class="form-control" name="price" placeholder="Price (Optional)">
-                </div>
+
                 <div class="form-group">
                     <input type="submit" class="btn blue btn-lg btn-block" value="Create Cafe">
                 </div>

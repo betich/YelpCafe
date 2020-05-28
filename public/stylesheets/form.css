@@ -67,6 +67,19 @@ input[type="password"]:invalid {
 input[type="number"] {
 	display: none;
 }
+.input-group-text {
+	background-color: rgb(255, 255, 255);
+}
+.input-group-text i {
+	color: rgb(65, 6, 137);
+}
+
+.required:before {
+    content:" *";
+	color: salmon;
+	font-size: 1.2em;
+	margin-right: 10px;
+}
 
 .link {
 	position: relative;
@@ -78,6 +91,10 @@ textarea {
 	resize: none;
 	height: 200px;
 	min-height: 150px;
+}
+
+label {
+	font-size: 1em;
 }
 
 a.navbar-brand {
