@@ -101,6 +101,7 @@ a.navbar-brand {
 	font-family: 'Bitter', serif;
 	color: rgb(255, 255, 255) !important;
 	transition: .1s ease-in-out;
+	font-weight: bold;
 }
 a.navbar-brand:hover { border-bottom: 3px solid rgb(255, 83, 83); }
 a.nav-link, a.navbar-brand i {

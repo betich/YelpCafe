@@ -30,7 +30,8 @@ router
         id: req.user._id,
         username: req.user.username
     }
-    let newCafe = {name: name, img: image, description: desc, price: price, author:author, website: siteurl, phone: phone, email: email, city: city};
+    let date = new Date();
+    let newCafe = {name: name, img: image, description: desc, price: price, author:author, website: siteurl, phone: phone, email: email, city: city, date: date};
     Cafe.create(newCafe, (err, cafe) => {
         if (err) {
             req.flash('error', err.message);

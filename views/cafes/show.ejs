@@ -23,6 +23,8 @@
         // years
         if (diffMin/60/24/31/12 >= 1) return timeStamp(diffMin/60/24/31/12, "year")
 
+        else return "invalid time ago"
+
         function timeStamp(time, unit) {
         	time = Math.floor(time);
         	if (time > 1) unit += 's';
@@ -43,7 +45,7 @@
         <section class="col-md-12">
             <h1><%= cafe.name %></h1>
             <p>
-                Submitted by <a href="#"><%= cafe.author.username %></a>
+                Submitted by <a href="#"><%= cafe.author.username %></a>, <span><%- timeDiff(cafe.date, date) %></span>
             </p>
 
             <!-- Modify Buttons -->
@@ -104,19 +106,21 @@
                             </div>
                             <p><%= comment.text %></p>
 
-                            <% if(user && comment.author.id.equals(user._id)) { %>
-                                <a class="btn btn-sm btn-warning"
+                            <div class="float-right">
+                                <% if(user && comment.author.id.equals(user._id)) { %>
+                                    <a class="btn btn-sm btn-warning"
                                     href="/cafes/<%= cafe._id %>/comments/<%= comment._id %>/edit">
-                                    <i class="fas fa-edit"></i> Edit
+                                    <i class="fas fa-edit" style="font-size: 16px;"></i> Edit
                                 </a>
                                 <div class="inline-btn">
                                     <form action="/cafes/<%= cafe._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
                                         <button class="btn btn-sm btn-danger">
-                                          <i class="fas fa-trash-alt"></i> Delete
+                                            <i class="fas fa-trash-alt"></i> Delete
                                         </button>
-                                      </form>
+                                    </form>
                                 </div>
-                            <% } %>
+                                <% } %>
+                            </div>
                         </div>
                     </div>
                 <% }) %>

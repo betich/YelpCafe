@@ -9,6 +9,7 @@ var cafeSchema = new mongoose.Schema({
     email: String,
     phone: String,
     city: String,
+    date: Date,
     author: {
         id: {
             type: mongoose.Schema.Types.ObjectId,

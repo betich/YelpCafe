@@ -1,5 +1,30 @@
 <%- include ("../partials/header") %>
 
+<% function timeDiff(t1, t2) {
+    let dt = Math.abs(t2.getTime() - t1.getTime());
+    let diffMin = Math.abs(dt / (1000 * 60));
+    // seconds
+    if (diffMin*60 < 60) return timeStamp(diffMin*60, "second")
+    // minutes
+    if (diffMin < 60) return timeStamp(diffMin, "minute")
+    // hours
+    if (diffMin/60 < 24) return timeStamp(diffMin/60, "hour")
+    // days
+    if (diffMin/60/24 < 31) return timeStamp(diffMin/60/24, "day")
+    // months
+    if (diffMin/60/24/31 < 12) return timeStamp(Math.abs(t2.getMonth()-t1.getMonth()), "month")
+    // years
+    if (diffMin/60/24/31/12 >= 1) return timeStamp(diffMin/60/24/31/12, "year")
+
+    else return "invalid time ago"
+
+    function timeStamp(time, unit) {
+        time = Math.floor(time);
+        if (time > 1) unit += 's';
+        return `${time} ${unit} ago` 
+    }
+} %>
+
 <div class="container-fluid" id="bg-container">
     <!-- Container for the header -->
     <header class="jumbotron" id="img-bg">
@@ -22,12 +47,12 @@
             ratings /= e.comments.length;
             ratings ? ratings = ratings.toFixed(1) : ratings = "No Reviews";
         %>
-            <div class="col-md-4 col-sm-6">
+            <div class="col-md-6 col-lg-4">
                 <div class="card" id="cafe-card">
                     <a href="/cafes/<%= e._id %>" id="card-link">
                         <img src="<%= e.img %>" class="thumb card-img-top" alt="<%= e.name %>">
                     </a>
-                    <div class="card-body">
+                    <div class="card-body" style="padding-bottom: 5px;">
                         <a href="/cafes/<%= e._id %>"><h6 class="card-title"><%= e.name %></h6></a>
                         <div class="inline" id="card-cafe-infos">
                             <p id="star">
@@ -39,9 +64,12 @@
                                 <% } %>
                                 </div>
                             </p><br>
-                            <p id="reviews"><%= reviews %> reviews &bull;</p>
+                            <p id="reviews"><%= reviews %> reviews</p> &bull;
                             <p id="price"><%- price %></p>
                         </div>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <p id="card-cafe-infos">Submitted <%- timeDiff(e.date, date) %></p>
                     </div>
                 </div>
             </div>

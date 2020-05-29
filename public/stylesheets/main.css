@@ -98,7 +98,8 @@ a i {
 	   object-fit: cover;
 }
 .card-title {
-	font-size: 1.15em;
+	font-size: 1.25em;
+	margin-bottom: 5px;
 }
 #card-cafe-infos {
 	font-size: 0.75em;
@@ -276,7 +277,7 @@ a i {
 }
 
 .inline { 
-	margin-top: 20px;
+	margin-top: 5px;
 }
 .inline>* {
 	display: inline-block;
