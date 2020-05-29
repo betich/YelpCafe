@@ -17,7 +17,14 @@ var Routes = {
 	index: require('./routes/index')
 };
 
-mongoose.connect('mongodb://localhost:27017/yelpcafe', { useUnifiedTopology: true, useNewUrlParser: true });
+mongoose.connect(process.env.DATABASEURL,
+	{ useUnifiedTopology: true, useNewUrlParser: true
+}).then(() => {
+	console.log("DB connected successfully");
+}).catch(err => {
+	console.log(err.message);
+});
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public')); // Lets /public be used for calling stylesheets

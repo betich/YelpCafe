@@ -306,7 +306,7 @@ a i {
 	padding: 0;
 }
 #img-bg {
-	background-image: url("/img/cover.jpg");
+	background-image: url("https://imgur.com/3oT5vZ6.jpg");
 	background-size: cover;
 	background-attachment: fixed;
 	display: -webkit-box;

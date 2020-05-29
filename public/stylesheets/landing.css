@@ -325,25 +325,25 @@ legend {
             animation: imgAnim 25s linear infinite;
 }
 .slideshow li:nth-child(1) { 
-    background-image: url(/img/bg1.jpg) 
+    background-image: url("https://imgur.com/zMIr02R.jpg") 
 }
 .slideshow li:nth-child(2) { 
-    background-image: url(/img/bg2.jpg);
+    background-image: url("https://imgur.com/GMlUaQ2.jpg");
     -webkit-animation-delay: 5s;
             animation-delay: 5s; 
 }
 .slideshow li:nth-child(3) { 
-    background-image: url(/img/bg3.jpg);
+    background-image: url("https://imgur.com/bg9191U.jpg");
     -webkit-animation-delay: 10s;
             animation-delay: 10s; 
 }
 .slideshow li:nth-child(4) { 
-    background-image: url(/img/bg4.jpg);
+    background-image: url("https://imgur.com/FtDHqAl.jpg");
     -webkit-animation-delay: 15s;
             animation-delay: 15s; 
 }
 .slideshow li:nth-child(5) { 
-    background-image: url(/img/bg5.jpg);
+    background-image: url("https://imgur.com/C64IbXv.jpg");
     -webkit-animation-delay: 20s;
             animation-delay: 20s; 
 }
