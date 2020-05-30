@@ -17,7 +17,7 @@ var Routes = {
 	index: require('./routes/index')
 };
 
-mongoose.connect(process.env.DATABASEURL,
+mongoose.connect(process.env.DATABASEURL || "mongodb://localhost:27017/yelpcafe",
 	{ useUnifiedTopology: true, useNewUrlParser: true
 }).then(() => {
 	console.log("DB connected successfully");

@@ -10,7 +10,6 @@ var On = {
 			$(this).siblings().filter(args.iconClass).removeClass(args.clickClass); // Reset Color
 			Rating.assignColor(args.hues[args.rating - 1], args.colorVar);
 			$(this).prevAll().addBack().addClass(args.clickClass);
-			console.log($(args.formInput).val())
 		};
 	},
 	hoverIn: function(args) {

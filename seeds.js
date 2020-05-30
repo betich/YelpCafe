@@ -3,6 +3,8 @@ var mongoose    = require('mongoose'),
     Comment     = require('./models/comments');
 
 // Admin Object
+// Local ID: 5ebd80b7c56ace27f4273131
+// Atlas ID: 5ed10f7405bd350017baed58
 let admin = {
     id: "5ed10f7405bd350017baed58",
     username: "Admin"
